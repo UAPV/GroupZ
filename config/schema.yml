@@ -1,0 +1,53 @@
+propel:
+
+  gz_group:
+    _attributes :   { phpName: Group }
+    id: ~
+    name:           { type: varchar(255), required: true, index: unique }
+    ml_name:        { type: varchar(255), required: true, index: unique, phpName: MailingListName } # Name or ID of the group on the mailing list manager
+    title:          { type: varchar(255), required: true }
+    is_public:      { type: boolean,      required: true, default: true }
+    description:    { type: longvarchar,  required: true }
+    owner_id:       { type: integer,      required: true, foreignTable: gz_user, foreignReference: id }
+    expires_notice: { type: boolean,      default: false } # true if sent, false else
+    expires_at:     { type: timestamp,    required: true }
+    deleted:        { type: integer,      required: true, default: 0 }
+    created_at: ~
+    updated_at: ~
+
+    _foreignKeys:
+      owner:
+        foreignTable: gz_user
+        phpName: Owner
+        refPhpName: OwnedGroup
+        references:
+          - { local: owner_id, foreign: id }
+
+  gz_user:
+    _attributes :   { phpName: User }
+    id: ~
+    is_internal:    { type: boolean, required: true, default: true } # does the user comes from the ldap or not
+    added_by:       { type: integer       } # if the user is not internal, store the person who invited him
+    firstname:      { type: varchar(255) }
+    lastname:       { type: varchar(255) }
+    mail:           { type: varchar(255) }
+    org:            { type: varchar(255) }
+    tel:            { type: varchar(10)  }
+    password:       { type: varchar(40)  } # SHA1 invitation code
+    created_at: ~
+
+  gz_group_member:
+    _attributes :   { phpName: GroupMember, isCrossRef: true }
+    group_id:       { type: integer, primaryKey: true, required: true, foreignTable: gz_group, foreignReference: id }
+    user_id:        { type: integer, primaryKey: true, required: true, foreignTable: gz_user,  foreignReference: id }
+
+  gz_invitation:
+    _attributes :   { phpName: Invitation }
+    id: ~
+    group_id: ~
+    user_id: ~
+    hash:           { type: varchar(40), required: true } # SHA1 invitation code
+    invite:         { type: integer, default: 0 } # ????
+    created_at: ~
+    _indexes:       { hash_idx: [ hash ] }
+
