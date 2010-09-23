@@ -1,0 +1,3 @@
+sfPropel15Plugin:
+  repo: git://github.com/fzaninotto/sfPropel15Plugin.git
+  path: plugins/

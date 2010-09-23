@@ -1,0 +1,9 @@
+cache/*
+log/*
+lib/model/om/*
+lib/model/map/*
+lib/form/base/*
+lib/filter/base/*
+data/sql/*
+nbproject
+plugins//sfPropel15Plugin
