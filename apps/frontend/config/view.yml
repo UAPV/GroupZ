@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [elastic.css, uapv.css, main.css]
 
-  javascripts:    [elastic.js, jquery.js]
+  javascripts:    [jquery.js, elastic.js]
 
   has_layout:     true
   layout:         layout

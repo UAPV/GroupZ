@@ -11,7 +11,7 @@ class groupActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->Groups = $this->getRoute()->getObjects();
+    $this->Groups = array(); // TODO
   }
 
   public function executeShow(sfWebRequest $request)
