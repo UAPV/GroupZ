@@ -6,4 +6,5 @@ lib/form/base/*
 lib/filter/base/*
 data/sql/*
 nbproject
+.idea
 plugins//sfPropel15Plugin
