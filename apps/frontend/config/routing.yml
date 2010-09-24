@@ -6,6 +6,15 @@ homepage:
   url:   /
   param: { module: default, action: index }
 
+group:
+  class: sfPropel15RouteCollection
+  options:
+    model:                Group
+    module:               group
+    prefix_path:          /group
+    column:               name
+    with_wildcard_routes: true
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

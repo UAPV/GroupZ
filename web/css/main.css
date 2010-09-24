@@ -1,0 +1,33 @@
+
+/* Forms */
+
+form ul.fields {
+    margin: 0;
+}
+
+form ul.fields li {
+    list-style: none;
+    margin: 1.5em 0;
+}
+
+form ul.fields li label {
+    display: block;
+    margin: 0.5em 0;
+    color: #5D5448;
+}
+
+
+/* New group page */
+
+.new_group #name span {
+    font-size: larger;
+}
+
+.new_group #title input,
+.new_group #description textarea {
+    width: 90%;
+}
+
+.new_group #is_public label {
+    display: inline;
+}

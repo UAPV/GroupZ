@@ -19,4 +19,9 @@
  */
 class GroupMember extends BaseGroupMember {
 
+  public function __toString()
+  {
+    return $this->getGroupId().'-'.$this->getUserId();
+  }
+
 } // GroupMember

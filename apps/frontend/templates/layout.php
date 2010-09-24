@@ -9,6 +9,15 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <?php echo $sf_content ?>
+    <div class="uapv_wrapper">
+      <div class="uapv_header">
+      </div>
+      <div class="uapv_content">
+        <?php echo $sf_content ?>
+      </div>
+    </div>
+    <div class="uapv_footer">
+      <p><a href="gpl.univ-avignon.fr">GroupZ - un logiciel libre de l'Université d'Avignon et des Pays de Vaucluse</a></p>
+    </div>
   </body>
 </html>

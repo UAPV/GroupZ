@@ -19,4 +19,14 @@
  */
 class User extends BaseUser {
 
+  public function __toString()
+  {
+    return $this->getFullname();
+  }
+
+  public function getFullname()
+  {
+    return $this->getFirstname().' '.$this->getLastname();
+  }
+
 } // User

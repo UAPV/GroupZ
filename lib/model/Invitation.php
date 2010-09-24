@@ -19,4 +19,9 @@
  */
 class Invitation extends BaseInvitation {
 
+  public function __toString()
+  {
+    return $this->getHash();
+  }
+
 } // Invitation
