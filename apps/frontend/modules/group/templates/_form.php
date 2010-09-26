@@ -7,14 +7,32 @@
     <input type="hidden" name="sf_method" value="put" />
   <?php endif; ?>
 
+
+  <?php echo $form->renderHiddenFields(false) ?>
+
+  <?php if ($form->hasGlobalErrors()): ?>
+    <?php echo $form->renderGlobalErrors() ?>
+  <?php endif; ?>
+
   <script type="text/javascript">
     $(document).ready(function() {
-      $('#group_title').keypress (function() {
-        //if(!$('group_name').data ('overriden'))
+
+      function cleanGroupName (name) {
+        return name.replace (/[^a-z0-9]/ig,'-').toLowerCase ();
+      }
+
+      $('#group_title').keyup (function () {
+        if(!$('#group_name').data ('overriden'))
         {
-          $('group_name').value($(this).value());
+          $('#group_name').val (cleanGroupName ($(this).val ()));
         }
       });
+
+      $('#group_name').keyup (function (event) {
+        $(this).val (cleanGroupName ($(this).val()));
+        $(this).data ('overriden', true);
+      });
+      
     });
   </script>
 
@@ -28,9 +46,9 @@
       <?php echo $form['name']->renderLabel() ?>
       <?php echo $form['name']->render() ?>
       <span>
-        <?php echo $form['name']->renderError() ?>
         @groupes.univ-avignon.fr <?php // TODO changeme ?>
       </span>
+      <?php echo $form['name']->renderError() ?>
     </li>
     <li id="description">
       <?php echo $form['description']->renderLabel() ?>
