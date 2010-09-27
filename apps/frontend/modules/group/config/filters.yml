@@ -1,0 +1,4 @@
+rendering: ~
+security:  ~ # default symfony security handler
+cache:     ~
+execution: ~

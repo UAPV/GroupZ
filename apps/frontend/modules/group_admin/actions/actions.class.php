@@ -7,7 +7,7 @@
  * @subpackage group
  * @author     Arnaud Didry <arnaud@didry.info>
  */
-class groupActions extends sfActions
+class group_adminActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
