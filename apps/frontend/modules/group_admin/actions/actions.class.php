@@ -53,7 +53,7 @@ class group_adminActions extends sfActions
 
     $this->getRoute()->getObject()->delete();
 
-    $this->redirect('group/index');
+    $this->redirect('group_admin/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -63,7 +63,7 @@ class group_adminActions extends sfActions
     {
       $Group = $form->save();
 
-      $this->redirect('group/edit?id='.$Group->getId());
+      $this->redirect('group_admin/edit?id='.$Group->getId());
     }
   }
 }

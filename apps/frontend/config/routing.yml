@@ -4,11 +4,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: group, action: index }
-
-group_show:
-  url: /group/:id
-  param: { module: group_read_only, action: show }
+  param: { module: group_admin, action: index }
 
 group_admin:
   class: sfPropel15RouteCollection
@@ -18,6 +14,10 @@ group_admin:
     prefix_path:          /group
     column:               name
     with_wildcard_routes: true
+
+group_show:
+  url: /group/:id
+  param: { module: group_read_only, action: show }
 
 # generic rules
 # please, remove them by adding more specific rules

@@ -26,7 +26,7 @@ propel:
   gz_user:
     _attributes :   { phpName: User }
     id: ~
-    is_internal:    { type: boolean, required: true, default: true } # does the user comes from the ldap or not
+    is_guest:       { type: boolean, required: true, default: false } # does the user comes from the ldap or not
     added_by:       { type: integer       } # if the user is not internal, store the person who invited him
     firstname:      { type: varchar(255) }
     lastname:       { type: varchar(255) }

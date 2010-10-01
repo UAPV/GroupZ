@@ -10,24 +10,42 @@ form ul.fields li {
     margin: 1.5em 0;
 }
 
-form ul.fields li label {
+form label {
     display: block;
     margin: 0.5em 0;
     color: #5D5448;
+    font-size: 1.1em;
 }
 
 
-/* New group page */
+/* Edit group page */
 
 .new_group #name span {
     font-size: larger;
 }
 
-.new_group #title input,
-.new_group #description textarea {
+.new_group #title input {
     width: 90%;
+}
+.new_group #description textarea {
+    width: 98%;
 }
 
 .new_group #is_public label {
     display: inline;
+}
+
+.group_members {
+    position: relative;
+    padding-bottom: 4em;
+}
+.group_members #new_member {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 1px solid #D4D0C9;
+    padding: 0 2em 1em 2em;
+}
+.group_members #new_member input#autocomplete_user {
+    width: 200px;
 }

@@ -1,8 +1,9 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
+
 <?php  /* @var $form sfFormSymfony */  ?>
 
-<form action="<?php echo url_for('group/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+<form action="<?php echo url_for('group_admin/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
   <?php if (!$form->getObject()->isNew()): ?>
     <input type="hidden" name="sf_method" value="put" />
   <?php endif; ?>
@@ -61,21 +62,90 @@
     </li>
   </ul>
 
-  <div class="on-2 columns">
-    <div class="column">
-      <label><?php echo _('Internal members') ?></label>
-    </div>
-    <div class="column">
-      <label><?php echo _('External members') ?></label>
+  <div class="group_members">
+    <label><?php echo _('Group members') ?></label>
+    <ul class="users">
+      <?php foreach ($form->getObject()->getUsers () as $user): ?>
+        <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>
+          <?php echo input_hidden_tag ('group[users][]', $user->getId()) ?>
+          <span class="user_fullname"><?php echo $user->getFullname (); ?></span>
+          <span class="user_email"><?php echo link_to ('mailto:'.$user->getEmail (), $user->getEmail ()) ?></span>
+          <span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    <div id="new_member"">
+      <label for="autocomplete_user"><?php echo _('Add user') ?></label>
+      <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email of your contact') ?>" />
+      <input type="submit" id="add_user" value="<?php  echo _('Add') ?>" />
+
+      <script type="text/javascript" src="<?php echo javascript_path('jquery-ui-1.8.5.custom.min.js') ?>" ></script>
+      <script type="text/javascript">
+
+        // Initialize the user autocompleter
+        $('#autocomplete_user').autocomplete ({
+			source: "<?php echo url_for('user/autocomplete') ?>",
+			minLength: 2,
+            select: selectUser
+        })
+
+        // Function called to customize the autocomplete list rendering
+        .data("autocomplete")._renderItem = function( ul, item ) {
+          return $("<li></li>")
+            .data ("item.autocomplete", item)
+            .append(
+              '<a><span class="user_fullname">'+item.fullname+'</span><br />'+
+              '<span class="user_email">'+item.email+'</span>'
+            )
+            .appendTo (ul);
+		};
+
+        // Fonction called when an item is selected in the autocomplete list
+        function selectUser ( event, ui ) {
+          if (ui.item) { // TODO test if user is already in the list
+            $('.group_members ul.users').append (
+              '<li '+(ui.item.guest ? 'class="guest_user"' : '')+'>'+
+                '<input type="hidden" name="group[users][]" value="'+ui.item.id+'"/>'+
+                '<span class="user_fullname">'+ui.item.fullname+'</span> '+
+                '<span class="user_email"><a href="mailto:'+ui.item.email+'">'+ui.item.email+'</a></span> '+
+                '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
+              '</li>');
+          }
+          else {
+            console.log ("Nothing selected, input was " + this.value); // TODO create user
+          }
+          $(this).val('');
+        }
+
+        // Delete user click handler
+        $('.user_delete', $('ul.users')).live ('click', function () {
+          $(this).closest ('li').remove();
+          return false;
+        });
+
+        // Add user handler
+        $('#add_user').click (function (event) {
+          event.preventDefault();
+          $('#autocomplete_user').data("autocomplete")._trigger( "select", null, {ui: {}});
+        });
+
+        $('#autocomplete_user').keypress (function (event) {
+          if (event.keyCode == 13) {
+             $('#add_user').click();
+           }
+        });
+        
+      </script>
+      <?php use_stylesheet('jqueryui/jquery-ui-1.8.5.custom.css', sfWebResponse::LAST) ?>
     </div>
   </div>
 
   <div class="form_actions">
     <input type="submit" value="<?php echo _('Save') ?>" />&nbsp;&nbsp;
     <?php if (!$form->getObject()->isNew()): ?>
-      <?php echo link_to(_('Delete'), 'group/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => _('Are you sure?'))) ?>&nbsp;&nbsp;
+      <?php echo link_to(_('Delete'), 'group_admin/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => _('Are you sure?'))) ?>&nbsp;&nbsp;
     <?php endif; ?>
-    <a href="<?php echo url_for('group/index') ?>"><?php echo _('Back to list') ?></a>
+    <a href="<?php echo url_for('group_admin/index') ?>"><?php echo _('Back to list') ?></a>
   </div>
 
 </form>

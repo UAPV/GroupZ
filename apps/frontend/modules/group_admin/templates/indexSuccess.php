@@ -1,11 +1,14 @@
 
-<a href="<?php echo url_for('group/new') ?>"><?php echo _('New group') ?></a>
+<?php if(! $sf_user->isGuest()): ?>
 
-<h2><?php echo _('My groups') ?></h2>
-<ul id="group_list">
-  <?php include_partial('list', array('Groups' => $Groups)) ?>
-</ul>
+  <a href="<?php echo url_for('group_admin/new') ?>"><?php echo _('New group') ?></a>
 
+  <h2><?php echo _('My groups') ?></h2>
+  <ul id="group_list">
+    <?php include_partial('list', array('Groups' => $Groups)) ?>
+  </ul>
+
+<?php endif ?>
 
 <?php if(false /* TODO count($GroupsFollowed) */): ?>
 

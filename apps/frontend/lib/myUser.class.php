@@ -1,5 +1,11 @@
 <?php
 
-class myUser extends sfBasicSecurityUser
+class myUser extends uapvBasicSecurityUser
 {
+
+  public function isGuest ()
+  {
+    return $this->hasCredential('guest');
+  }
+
 }
