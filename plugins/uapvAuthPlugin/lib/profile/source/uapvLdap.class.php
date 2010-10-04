@@ -180,7 +180,7 @@ class uapvLdap
       $baseDn = implode (',', $baseDn);
 
       // Envoie et récupération de la requête.
-      $result = ldap_search ($this->ldapCon, $baseDn, $filter, $justthese, $attrsonly, $sizelimit);
+      $result = @ldap_search ($this->ldapCon, $baseDn, $filter, $justthese, $attrsonly, $sizelimit);
       if ($result === false)
         throw new sfException ('Impossible d\'effectuer la recherche dans l\'annuaire ldap : '.ldap_error ($this->ldapCon));
 

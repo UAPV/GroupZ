@@ -1,3 +1,7 @@
 sfPropel15Plugin:
   repo: git://github.com/fzaninotto/sfPropel15Plugin.git
   path: plugins/
+
+sfPropelActAsBlameableBehaviorPlugin:
+  repo: git://github.com/ArnaudD/sfPropelActAsBlameableBehaviorPlugin.git
+  path: plugins/
