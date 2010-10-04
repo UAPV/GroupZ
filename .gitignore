@@ -8,3 +8,4 @@ data/sql/*
 nbproject
 .idea
 plugins//sfPropel15Plugin
+plugins//sfPropelActAsBlameableBehaviorPlugin
