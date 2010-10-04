@@ -102,17 +102,17 @@
 
         // Fonction called when an item is selected in the autocomplete list
         function selectUser ( event, ui ) {
-          if (ui.item) { // TODO test if user is already in the list
-            $('.group_members ul.users').append (
-              '<li '+(ui.item.guest ? 'class="guest_user"' : '')+'>'+
-                '<input type="hidden" name="group[users][]" value="'+ui.item.id+'"/>'+
-                '<span class="user_fullname">'+ui.item.fullname+'</span> '+
-                '<span class="user_email"><a href="mailto:'+ui.item.email+'">'+ui.item.email+'</a></span> '+
-                '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
-              '</li>');
+          if (ui.item) // TODO test if user is already in the list
+          {
+            if (ui.item.id)
+              appendUser (ui.item); // user is in the DB
+            else
+              addUserByEmail (ui.item.email); // user is in the LDAP but not in DB, we need to add him
+
           }
-          else {
-            console.log ("Nothing selected, input was " + this.value); // TODO create user
+          else if (this.value)
+          {
+            addUserByEmail (this.value); // add a guest user
           }
           $(this).val('');
         }
@@ -131,9 +131,33 @@
 
         $('#autocomplete_user').keypress (function (event) {
           if (event.keyCode == 13) {
-             $('#add_user').click();
-           }
+            event.preventDefault();
+            $('#add_user').click();
+          }
         });
+
+        function addUserByEmail (email)
+        {
+          $.post('<?php echo url_for ('user/add') ?>', { 'email': email },
+            function(data){
+              if (data.error)
+                alert(data.error);
+              else
+                appendUser (data);
+            }, "json");
+
+        }
+
+        function appendUser (user)
+        {
+          $('.group_members ul.users').append (
+            '<li '+(user.guest ? 'class="guest_user"' : '')+'>'+
+              '<input type="hidden" name="group[users][]" value="'+user.id+'"/>'+
+              '<span class="user_fullname">'+user.fullname+'</span> '+
+              '<span class="user_email"><a href="mailto:'+user.email+'">'+user.email+'</a></span> '+
+              '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
+            '</li>');
+        }
         
       </script>
       <?php use_stylesheet('jqueryui/jquery-ui-1.8.5.custom.css', sfWebResponse::LAST) ?>
@@ -149,3 +173,7 @@
   </div>
 
 </form>
+
+<div id="dialog-modal" title="<?php echo _('Add a new user') ?>">
+	<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>
+</div>

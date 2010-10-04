@@ -29,4 +29,15 @@ class User extends BaseUser {
     return $this->getFirstname().' '.$this->getLastname();
   }
 
+  /**
+   * Set the value of [mail] column.
+   *
+   * @param      string $v new value
+   * @return     User The current object (for fluent API support)
+   */
+  public function setMail($v)
+  {
+    parent::setMail(strtolower($v));
+  }
+
 } // User
