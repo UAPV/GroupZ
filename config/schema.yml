@@ -2,16 +2,18 @@ propel:
 
   gz_group:
     _attributes :   { phpName: Group }
+    _propel_behaviors:
+      blameable:
     id: ~
     name:           { type: varchar(255), required: true, index: unique }
     ml_name:        { type: varchar(255), required: true, index: unique, phpName: MailingListName } # Name or ID of the group on the mailing list manager
     title:          { type: varchar(255), required: true }
     is_public:      { type: boolean,      required: true, default: true }
     description:    { type: longvarchar,  required: true }
-    owner_id:       { type: integer,      required: true, foreignTable: gz_user, foreignReference: id }
     expires_notice: { type: boolean,      default: false } # true if sent, false else
     expires_at:     { type: timestamp,    required: true }
     deleted:        { type: integer,      required: true, default: 0 }
+    created_by:     { type: integer,      required: true }
     created_at: ~
     updated_at: ~
 
@@ -19,9 +21,9 @@ propel:
       owner:
         foreignTable: gz_user
         phpName: Owner
-        refPhpName: OwnedGroup
+        refPhpName: CreatedGroup
         references:
-          - { local: owner_id, foreign: id }
+          - { local: created_by, foreign: id }
 
   gz_user:
     _attributes :   { phpName: User }
