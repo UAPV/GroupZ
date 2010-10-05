@@ -10,9 +10,12 @@ function url_for_cas_login ($url = null)
   if ($url === null)
     $url = sfContext::getInstance()->getRequest()->getUri();
   
-  $casUrl = 'https://'.
-    sfConfig::get ('app_cas_server_host', 'localhost').':'.
-    sfConfig::get ('app_cas_server_port', 443).'/'.
-    sfConfig::get ('app_cas_server_path', '').
-    'login?service='.urlencode ($url);
+  $casUrl[] = 'https://'.sfConfig::get ('app_cas_server_host', 'localhost').':'.sfConfig::get ('app_cas_server_port', 443);
+
+  if (strlen (sfConfig::get ('app_cas_server_path', '')) > 0)
+    $casUrl[] = trim (sfConfig::get ('app_cas_server_path', ''), '/');
+
+  $casUrl[] = 'login?service='.urlencode ($url);
+
+  return implode ('/', $casUrl);
 }
