@@ -12,7 +12,9 @@
   <?php echo $form->renderHiddenFields(false) ?>
 
   <?php if ($form->hasGlobalErrors()): ?>
-    <?php echo $form->renderGlobalErrors() ?>
+    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+      <?php echo $form->renderGlobalErrors() ?>
+    </div>
   <?php endif; ?>
 
   <script type="text/javascript">
@@ -169,11 +171,11 @@
     <?php if (!$form->getObject()->isNew()): ?>
       <?php echo link_to(_('Delete'), 'group_admin/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => _('Are you sure?'))) ?>&nbsp;&nbsp;
     <?php endif; ?>
-    <a href="<?php echo url_for('group_admin/index') ?>"><?php echo _('Back to list') ?></a>
+    <a href="<?php echo url_for('group/index') ?>"><?php echo _('Back to list') ?></a>
   </div>
 
 </form>
 
-<div id="dialog-modal" title="<?php echo _('Add a new user') ?>">
+<div id="dialog-modal" title="<?php echo _('Add a new user') ?>" style="display: none;">
 	<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>
 </div>
