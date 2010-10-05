@@ -26,16 +26,16 @@ class UserPeer extends BaseUserPeer {
    * @param array $user
    * @return User
    */
-  public static function createFromLdap (array $user)
+  public static function createFromLdap (array $userData)
   {
     $user = new User ();
-    $user->setMail ($user ['mail']);
+    $user->setMail ($userData ['mail']);
     $user->setIsGuest(false);
-    $user->setFirstname ($user ['givenname']);
-    $user->setLastname ($user ['sn']);
+    $user->setFirstname ($userData ['givenname']);
+    $user->setLastname ($userData ['sn']);
     // TODO
-    //$user->setOrg ($user ['']);
-    //$user->setTel ($user ['']);
+    //$user->setOrg ($userData ['']);
+    //$user->setTel ($userData ['']);
     $user->save ();
 
     return $user;
