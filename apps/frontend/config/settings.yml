@@ -37,5 +37,5 @@ all:
     enabled_modules: [default, authentication]
 
   .actions:
-    login_module:  fz_authentication
+    login_module:  auth
     login_action:  login

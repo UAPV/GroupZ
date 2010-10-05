@@ -20,7 +20,7 @@ class myUser extends uapvBasicSecurityUser
   public function getId ()
   {
     $user = $this->getAttribute('user');
-    return $user['id'];
+    return $user['Id'];
   }
 
   public function signIn ($login)
@@ -30,7 +30,20 @@ class myUser extends uapvBasicSecurityUser
     $userDb = UserQuery::create ()->findOneByMail ($this->getProfileVar('mail'));
 
     if ($userDb === null)
-      $user = UserPeer::createFromLdap ($this->getProfile ());
+      $userDb = UserPeer::createFromLdap ($this->getProfile ()->getAll ());
+
+    $this->setAttribute('user', $userDb->toArray ());
   }
 
+  public function  __toString()
+  {
+    $user = $this->getAttribute('user');
+    return $user['Firstname'].' '.$user['Lastname'];
+  }
+
+  public function getUserObject ()
+  {
+    return UserQuery::create ()->findPk ($this->getId());
+  }
+  
 }

@@ -1,8 +1,7 @@
 rendering: ~
-security_cas:
-  class: gzSecurityFilterCasOptional
+security:
+  class: uapvSecurityFilterCas
   param:
     type: security
-security: ~
 cache:     ~
 execution: ~

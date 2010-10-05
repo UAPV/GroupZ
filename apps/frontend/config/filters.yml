@@ -1,7 +1,4 @@
 rendering: ~
-security:
-  class: uapvSecurityFilterCas
-  param:
-    type: security
+security:  ~
 cache:     ~
 execution: ~

@@ -49,3 +49,66 @@ form label {
 .group_members #new_member input#autocomplete_user {
     width: 200px;
 }
+
+.ui-autocomplete a .user_email {
+    font-size: 0.7em;
+    color: #AAA;
+}
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+}
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+    height: 200px;
+}
+
+/* Login Form */
+
+#login_form a {
+  color: white;
+}
+#login_form {
+  width: 230px;
+  margin: 3em auto;
+  padding: 15px;
+  background: #494846;
+  -moz-border-radius:     7px;
+  -webkit-border-radius:  7px;
+  border-radius:          7px;
+}
+#login_form p {
+    margin: 0 0 10px 0;
+}
+#login_form label {
+  display: block;
+  color: #BBB;
+  text-shadow: 1px 1px 3px #222;
+}
+#login_form input {
+  width: 202px;
+  padding: 5px;
+  font-size: 1.2em;
+}
+#login_form p#submit-login {
+    padding: 10px 0 5px 0;
+    text-align: center;
+  font-size: 0.8em;
+}
+input.password ,
+input.username ,
+#login_form input.username ,
+#login_form input.password {
+    padding-left: 21px;
+    background-repeat: no-repeat;
+    background-position: 3px center;
+}
+input.password {
+    background-image: url(../images/icons/keys.png);
+}
+input.username {
+    background-image: url(../images/icons/user.png);
+}
+
