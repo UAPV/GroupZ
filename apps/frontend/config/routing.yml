@@ -4,22 +4,32 @@
 # default rules
 homepage:
   url:   /
-  param: { module: group_admin, action: index }
+  param: { module: group, action: index }
 
+# group edition (registered user only)
 group_admin:
   class: sfPropel15RouteCollection
   options:
     model:                Group
     module:               group_admin
     prefix_path:          /group
+    actions:              [new, create, edit, update, delete]
     column:               name
     with_wildcard_routes: true
+    with_show:            false
 
-group_show:
-  url: /group/:id
-  param: { module: group_read_only, action: show }
+# group read-only (guest + registered users)
+group:
+  class: sfPropel15RouteCollection
+  options:
+    model:                Group
+    module:               group
+    prefix_path:          /group
+    actions:              [show]
+    column:               name
+    with_wildcard_routes: true
+    with_show:            true
 
-# generic rules
 # please, remove them by adding more specific rules
 default_index:
   url:   /:module
