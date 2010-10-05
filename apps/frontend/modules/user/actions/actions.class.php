@@ -26,23 +26,19 @@ class userActions extends gzActions
     //$dbResults = $ldap->search('(|(mail='.$term.')())');
 
     $data = array ();
-    foreach ($results as $user)
+    foreach ($ldapResults as $user)
     {
-      $data [] = array (
-        'id' => 1,
-        'fullname' => 'Foo Bar',
-        'email' => 'foo@bar.com',
-        'guest' => true
-      );
-    }
-
-      array (
-        'id' => 2,
-        'fullname' => 'Arnaud Didry',
-        'email' => 'Arnaud.Didry@univ-avignon.fr',
+      $userData = array (
+        'fullname' => array_key_exists('displayname', $user) ? $user['displayname'] : '',
+        'email' => array_key_exists('mail', $user) ? $user['mail'] : '',
         'guest' => false
-      ),
-    );
+      );
+
+      if ($userDb = UserQuery::create()->findOneByMail($user['mail']))
+        $userData['id'] = $userDb->getId ();
+
+      $data [] = $userData;
+    }
 
     return $this->returnJSON($data);
   }
@@ -57,7 +53,7 @@ class userActions extends gzActions
     $email = $request->getParameter('email');
     $this->forward404Unless($email);
 
-    try
+    try // to validate provided email
     {
       $validator = new sfValidatorEmail();
       $validator->clean ($email);
