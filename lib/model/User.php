@@ -40,4 +40,25 @@ class User extends BaseUser {
     parent::setMail(strtolower($v));
   }
 
+
+  /**
+   * Alias of User::getIsGuest()
+   * 
+   * @return boolean
+   */
+  public function isGuest ()
+  {
+    return $this->getIsGuest();
+  }
+
+  /**
+   * Return the list of groups the user is member of but not the creator.
+   *
+   * @return PropelObjectCollection
+   */
+  public function getFollowedGroups ()
+  {
+    return $this->getGroups(); // TODO need to be changed if we include the user in the group members (implicit now)
+  }
+
 } // User
