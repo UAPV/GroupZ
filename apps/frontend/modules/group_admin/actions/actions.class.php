@@ -4,21 +4,11 @@
  * group actions.
  *
  * @package    groupz
- * @subpackage group
+ * @subpackage group_admin
  * @author     Arnaud Didry <arnaud@didry.info>
  */
 class group_adminActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->Groups = array(); // TODO
-  }
-
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->Group = $this->getRoute()->getObject();
-  }
-
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new GroupForm();
@@ -53,7 +43,7 @@ class group_adminActions extends sfActions
 
     $this->getRoute()->getObject()->delete();
 
-    $this->redirect('group_admin/index');
+    $this->redirect('@homepage');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -63,7 +53,7 @@ class group_adminActions extends sfActions
     {
       $Group = $form->save();
 
-      $this->redirect('group_admin/edit?id='.$Group->getId());
+      $this->redirect('@group_admin_edit?name='.$Group->getName());
     }
   }
 }

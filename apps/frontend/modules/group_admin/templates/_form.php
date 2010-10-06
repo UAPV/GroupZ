@@ -3,7 +3,7 @@
 
 <?php  /* @var $form sfFormSymfony */  ?>
 
-<form action="<?php echo url_for('group_admin/'.($form->getObject()->isNew() ? 'create' : 'update').(!$form->getObject()->isNew() ? '?id='.$form->getObject()->getId() : '')) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data" ' ?>>
+<form action="<?php echo url_for(($form->getObject()->isNew() ? '@group_admin_create' : '@group_admin_update').(!$form->getObject()->isNew() ? '?name='.$form->getObject()->getName() : '')) ?>" method="post" >
   <?php if (!$form->getObject()->isNew()): ?>
     <input type="hidden" name="sf_method" value="put" />
   <?php endif; ?>
@@ -169,7 +169,7 @@
   <div class="form_actions">
     <input type="submit" value="<?php echo _('Save') ?>" />&nbsp;&nbsp;
     <?php if (!$form->getObject()->isNew()): ?>
-      <?php echo link_to(_('Delete'), 'group_admin/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => _('Are you sure?'))) ?>&nbsp;&nbsp;
+      <?php echo link_to(_('Delete'), '@group_admin_delete?name='.$form->getObject()->getName(), array('method' => 'delete', 'confirm' => _('Are you sure?'))) ?>&nbsp;&nbsp;
     <?php endif; ?>
     <a href="<?php echo url_for('group/index') ?>"><?php echo _('Back to list') ?></a>
   </div>

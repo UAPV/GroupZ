@@ -6,7 +6,6 @@ propel:
       blameable:
     id: ~
     name:           { type: varchar(255), required: true, index: unique }
-    ml_name:        { type: varchar(255), required: true, index: unique, phpName: MailingListName } # Name or ID of the group on the mailing list manager
     title:          { type: varchar(255), required: true }
     is_public:      { type: boolean,      required: true, default: true }
     description:    { type: longvarchar,  required: true }

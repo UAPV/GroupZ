@@ -23,5 +23,10 @@ class Group extends BaseGroup {
   {
     return $this->getTitle();
   }
+
+  public function getEmail ()
+  {
+    return $this->getName().'@groupes.univ-avignon.fr'; // TODO
+  }
   
 } // Group

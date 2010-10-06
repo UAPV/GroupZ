@@ -1,4 +1,17 @@
 
+/* Header */
+
+.uapv_wrapper {
+  background-image: url(../images/logo.gif);
+  background-repeat: no-repeat;
+  background-position: 2em 1.2em;
+}
+
+.uapv_header {
+  height: 118px;
+  border-bottom: 2px solid #C8C1B5;
+}
+
 /* Forms */
 
 form ul.fields {
@@ -64,6 +77,62 @@ form label {
 * html .ui-autocomplete {
     height: 200px;
 }
+
+/* Group list */
+
+.group_index h2 a {
+  display: block;
+  font-size: 0.6em;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+.group_list {
+  margin: 0 0 2em 0; 
+}
+.group_list li.group {
+  padding: 0.5em 1.3em;
+  list-style: none;
+  background: -moz-linear-gradient(F7F6F5 0%, rgb(255, 255, 255) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F7F6F5), color-stop(100%, rgb(255, 255, 255)));
+  border-top: 1px solid #E8E6E2;
+}
+.group_list li.group:hover {
+  background: -moz-linear-gradient(#F7F6F5 0%, rgb(255, 255, 255) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F5F2F0), color-stop(100%, #F7F6F5));
+}
+.group_list li.group .group_mail a:hover ,
+.group_list li.group:hover a {
+  color: #1E52A1;
+}
+.group_list li.group a {
+  color: #59554D;
+  text-decoration: none;
+}
+.group_list li.group .group_mail a {
+  color: #77736A;
+}
+.group_list li.group .group_title {
+  font-size: 1.6em;
+  font-weight: bold;
+  letter-spacing: -1px;
+  margin: 0;
+}
+.group_show .group_mail ,
+.group_list li.group .group_mail {
+  padding-right: 20px;
+  line-height: 16px;
+  height: 16px;
+  background: transparent url(../images/icons/mail-message-new.png)  no-repeat right center;
+  display: inline;
+}
+
+/* group show */
+
+.group_show h2.group_title {
+  margin-bottom: 0;
+}
+
 
 /* Login Form */
 
