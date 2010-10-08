@@ -15,13 +15,13 @@ html, body {
 }
 
 .uapv_wrapper ,
-.uapv_footer {
+.uapv_footnote {
   width: 970px;
   margin: 2em auto;
 }
 
 body.large .uapv_wrapper ,
-body.large .uapv_footer {
+body.large .uapv_footnote {
   width: auto;
   margin: 2em;
 }
@@ -36,11 +36,11 @@ body.large .uapv_footer {
   box-shadow:0px 1px 4px #8A7E6B;
 }
 
-.uapv_footer {
+.uapv_footnote {
     text-align: center;
 }
 
-.uapv_footer a {
+.uapv_footnote a {
     text-decoration: none;
     color: #8A7E6B;
 }
@@ -56,7 +56,11 @@ a {
 a:hover {
     color: #3C82B8;
 }
-
+h1 {
+  font-size: 3em;
+  letter-spacing: -3px;
+  color: #59554D;
+}
 h2 {
   color: #59554D;
   font-size: 1.8em;

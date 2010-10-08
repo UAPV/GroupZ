@@ -12,7 +12,7 @@
     <div id="login_form">
       <?php echo $sf_content ?>
     </div>
-    <div class="uapv_footer">
+    <div class="uapv_footnote">
       <p><a href="gpl.univ-avignon.fr">GroupZ - un logiciel libre de l'Université d'Avignon et des Pays de Vaucluse</a></p>
     </div>
   </body>

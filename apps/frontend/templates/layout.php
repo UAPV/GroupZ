@@ -11,12 +11,18 @@
   <body>
     <div class="uapv_wrapper">
       <div class="uapv_header">
+        <h1>
+          Group<span class="_z_">z</span>
+          <span class="tagline">Listes de diffusion et partage de fichiers pour vos groupes de travail</span>
+        </h1>
       </div>
       <div class="uapv_content">
         <?php echo $sf_content ?>
       </div>
+      <div class="uapv_footer">
+      </div>
     </div>
-    <div class="uapv_footer">
+    <div class="uapv_footnote">
       <p><a href="gpl.univ-avignon.fr">GroupZ - un logiciel libre de l'Université d'Avignon et des Pays de Vaucluse</a></p>
     </div>
   </body>

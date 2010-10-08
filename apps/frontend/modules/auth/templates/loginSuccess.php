@@ -1,6 +1,7 @@
 <?php decorate_with('login'); ?>
 
 <?php use_helper ('Cas') ?>
+<?php echo detect_cas_session () ?>
 <?php echo link_to_cas_login( _('Click here if you already have an account at the university')) // TODO make the message more explicit ?>
 
 <form action="" method="post">
