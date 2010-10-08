@@ -19,3 +19,18 @@ function url_for_cas_login ($url = null)
 
   return implode ('/', $casUrl);
 }
+
+function detect_cas_session ()
+{
+  $iframeUrl = url_for('uapvAuthCAS/detect');
+
+  return <<<HTML
+
+<script type="text/javascript">
+function uapvAuthCASSessionDetected ()
+{
+  alert ('CAS Detected');
+}</script><iframe src="$iframeUrl" width="1px" height="1px" style="visibility: hidden;"></iframe>
+HTML
+    ;
+}
