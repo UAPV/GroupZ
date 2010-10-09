@@ -178,15 +178,20 @@ form label {
   color: #BBB;
   text-shadow: 1px 1px 3px #222;
 }
-#login_page .login_block input {
-  width: 202px;
+#login_page a.button,
+#login_page input {
+  width: 210px;
   padding: 5px;
+}
+#login_page input {
   font-size: 1.2em;
 }
 #login_page .login_block p#submit-login {
     padding: 10px 0 5px 0;
     text-align: center;
-  font-size: 0.8em;
+}
+#login_page .login_block p#submit-login input {
+  font-size: 1em;
 }
 input.password ,
 input.username ,
