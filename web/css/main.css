@@ -228,3 +228,21 @@ input.username {
 		display: block;
 }
 
+/* Breadcrumb */
+
+ul#breadcrumb {
+		margin: 1em 0;
+}
+ul#breadcrumb li {
+		margin-left: 0px;
+		padding-right: 15px;
+    list-style: none;
+		display: inline;
+		background: transparent url(../images/breadcrumb_separator.png) no-repeat right center;
+}
+ul#breadcrumb li:first-child {
+		margin-left: 0px;
+}
+ul#breadcrumb li:last-child {
+		background: none;
+}

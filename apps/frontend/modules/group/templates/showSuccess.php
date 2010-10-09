@@ -1,3 +1,8 @@
+
+<?php include_partial ('global/breadcrumb', array (
+  'path' => array ('@group_show?name='.$Group->getName() => $Group->getTitle ())))
+?>
+
 <div class="group_show">
   <h2 class="group_title">
     <?php echo $Group->getTitle() ?>
@@ -12,6 +17,4 @@
   <?php endif ?>
   <p class="group_expire_date"><?php echo $Group->getExpiresAt() ?></p>
 </div>
-<a href="<?php echo url_for('group/edit?id='.$Group->getId()) ?>">Edit</a>
-&nbsp;
-<a href="<?php echo url_for('group/index') ?>">List</a>
+<a href="<?php echo url_for('@group_admin_edit?name='.$Group->getName()) ?>">Edit</a>

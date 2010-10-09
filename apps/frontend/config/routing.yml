@@ -24,7 +24,7 @@ group:
   options:
     model:                Group
     module:               group
-    prefix_path:          /group
+    prefix_path:          /g
     actions:              [show]
     column:               name
     with_wildcard_routes: true
