@@ -38,6 +38,11 @@ body.large .uapv_footnote {
 
 .uapv_footnote {
     text-align: center;
+		opacity: 50;
+}
+.uapv_footnote:hover {
+    text-align: center;
+		opacity: 100;
 }
 
 .uapv_footnote a {
@@ -88,6 +93,7 @@ input {
 form label {
 }
 
+.button,
 input[type=submit],
 button,
 .button:visited {
@@ -95,6 +101,7 @@ button,
   display: inline-block;
   padding: 5px 10px 6px;
   color: #fff;
+  text-align: center;
   text-decoration: none;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;

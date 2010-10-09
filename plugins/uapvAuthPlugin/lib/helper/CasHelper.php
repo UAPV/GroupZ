@@ -1,8 +1,8 @@
 <?php
 
-function link_to_cas_login ($label)
+function link_to_cas_login ($label, $attributes = array())
 {
-  return link_to ($label, url_for_cas_login ());
+  return link_to ($label, url_for_cas_login (), $attributes);
 }
 
 function url_for_cas_login ($url = null)

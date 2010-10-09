@@ -156,40 +156,42 @@ form label {
 
 /* Login Form */
 
-#login_form a {
-  color: white;
-}
-#login_form {
-  width: 230px;
+#login_page {
+  width: 270px;
   margin: 3em auto;
+}
+#login_page .login_block {
   padding: 15px;
   background: #494846;
   -moz-border-radius:     7px;
   -webkit-border-radius:  7px;
   border-radius:          7px;
 }
-#login_form p {
+#login_page .login_block a {
+  color: white;
+}
+#login_page .login_block p {
     margin: 0 0 10px 0;
 }
-#login_form label {
+#login_page .login_block label {
   display: block;
   color: #BBB;
   text-shadow: 1px 1px 3px #222;
 }
-#login_form input {
+#login_page .login_block input {
   width: 202px;
   padding: 5px;
   font-size: 1.2em;
 }
-#login_form p#submit-login {
+#login_page .login_block p#submit-login {
     padding: 10px 0 5px 0;
     text-align: center;
   font-size: 0.8em;
 }
 input.password ,
 input.username ,
-#login_form input.username ,
-#login_form input.password {
+#login_page .login_block input.username ,
+#login_page .login_block input.password {
     padding-left: 21px;
     background-repeat: no-repeat;
     background-position: 3px center;
@@ -199,5 +201,25 @@ input.password {
 }
 input.username {
     background-image: url(../images/icons/user.png);
+}
+.auth_method_title {
+		color: white;
+		text-align: center;
+		font-size: 1.1em;
+		font-weight: bold;
+		letter-spacing: -1px;
+}
+.auth_method_separator {
+		text-align: center;
+		font-size: 1.7em;
+		font-weight: bold;
+		letter-spacing: -1px;
+		margin: 0.5em 0;
+		color: #B9B5AF;
+  text-shadow: 1px 1px 1px #FFF;
+}
+.auth_logo {
+		margin: 0 auto 0.7em auto;
+		display: block;
 }
 

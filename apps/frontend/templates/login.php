@@ -9,7 +9,7 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id="login_form">
+    <div id="login_page">
       <?php echo $sf_content ?>
     </div>
     <div class="uapv_footnote">
