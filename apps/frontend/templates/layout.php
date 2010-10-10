@@ -16,6 +16,7 @@
           <span class="tagline">Listes de diffusion et partage de fichiers pour vos groupes de travail</span>
         </h1>
       </div>
+      <?php include_partial('global/breadcrumb', array ('path' => get_slot ('breadcrumb', array()))) ?>
       <div class="uapv_content">
         <?php echo $sf_content ?>
       </div>

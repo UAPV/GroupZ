@@ -2,33 +2,37 @@
 /* Header */
 
 .uapv_wrapper {
-  background-image: url(../images/logo.gif);
-  background-repeat: no-repeat;
-  background-position: 2em 1.2em;
 }
 
 .uapv_header {
-  height: 118px;
-  border-bottom: 2px solid #C8C1B5;
+  background: #494846;
+  background: -moz-linear-gradient(#3E3931 0%, #302C25 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCD9D5), color-stop(100%, #D1CDC8));
 }
 
 .uapv_header h1 {
-  margin-top: 0.5em;
-  padding-left: 80px;
+  height: 86px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 70px;
   text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+  background-image: url(../images/logo.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  font-size: 2.5em;
 }
 
 .uapv_header h1 ._z_ {
-  color: orange;
+  color: #4A85B0;
 }
 
 .uapv_header h1 span.tagline {
-  font-size: 0.4em;
+  font-size: 0.45em;
   display: block;
   font-weight: normal;
-  letter-spacing: -1px;
-  margin-top: -6px;
-  color: #A19F9A;
+  letter-spacing: -0.03em;
+  margin-top: -3px;
+  color: rgba(0,0,0,0.4);
   text-shadow: none;
 }
 
@@ -100,11 +104,19 @@ form label {
 
 /* Group list */
 
-.group_index h2 a {
-  display: block;
+.group_index h2 {
+  position: relative;
+}
+.group_index h2 a.button {
+  position: absolute;
+  top: 0;
+  right: 0;
   font-size: 0.6em;
-  font-weight: normal;
-  letter-spacing: 0;
+  padding: 10px 15px ;
+  padding-left: 40px;
+  background-image: url(../images/icons/new-group.png);
+  background-repeat: no-repeat;
+  background-position: 10px center;
 }
 
 .group_list {
@@ -163,6 +175,8 @@ form label {
 #login_page .login_block {
   padding: 15px;
   background: #494846;
+  background: -moz-linear-gradient(#494846 0%, #31302C 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #494846), color-stop(100%, #31302C));
   -moz-border-radius:     7px;
   -webkit-border-radius:  7px;
   border-radius:          7px;
@@ -231,7 +245,20 @@ input.username {
 /* Breadcrumb */
 
 ul#breadcrumb {
-		margin: 1em 0;
+  margin: 0;
+  padding: 0.6em 2em;
+  background: #B7B4B0;
+  color: #FFF;
+}
+ul#breadcrumb li a:hover {
+  color: #FFF;
+}
+ul#breadcrumb li a {
+  color: #59554D;
+  text-decoration: none;
+}
+ul#breadcrumb:hover a {
+  text-decoration: underline;
 }
 ul#breadcrumb li {
 		margin-left: 0px;

@@ -24,7 +24,7 @@
   <form action="" method="post">
     <p id="username">
       <label><?php echo _('Email') ?></label>
-      <input type="text" name="email" class="username" value="" placeholder="<?php echo _('email') ?>"/>
+      <input type="text" name="email" class="username" value="" placeholder="<?php echo _('email') ?>" tabindex="1"/>
     </p>
     <p id="password">
       <label><?php echo _('Password') ?></label>
@@ -34,9 +34,4 @@
       <input type="submit" class="large" value="<?php echo _('Log me in') ?>" />
     </p>
   </form>
-  <script type="text/javascript">
-  $(document).ready (function () {
-    $("input[name='username']").get(0).focus ();
-  });
-  </script>
 </div>

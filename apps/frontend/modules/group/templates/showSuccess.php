@@ -1,7 +1,5 @@
 
-<?php include_partial ('global/breadcrumb', array (
-  'path' => array ('@group_show?name='.$Group->getName() => $Group->getTitle ())))
-?>
+<?php slot ('breadcrumb', array ($Group->getTitle () => null)); ?>
 
 <div class="group_show">
   <h2 class="group_title">

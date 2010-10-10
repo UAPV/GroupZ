@@ -1,6 +1,5 @@
-<?php include_partial ('global/breadcrumb', array (
-  'path' => array ('@group_show?name='.$form->getObject()->getName() => $form->getObject()->getTitle (), 'null' => _('Edit'))))
-?>
+
+<?php slot ('breadcrumb',array ($form->getObject()->getTitle () => '@group_show?name='.$form->getObject()->getName(), _('Edit') => null )); ?>
 
 <h2>Edit Group</h2>
 
