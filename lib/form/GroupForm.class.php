@@ -38,6 +38,9 @@ class GroupForm extends BaseGroupForm
     foreach ($members as $member)
       $membersIds [] = $member->getUserId ();
 
+    if (! is_array($users))
+      $users = array();
+
     // Add new users
     foreach (array_diff ($users, $membersIds) as $userId)
     {
