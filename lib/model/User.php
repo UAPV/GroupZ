@@ -40,15 +40,24 @@ class User extends BaseUser {
     parent::setEmail(strtolower($v));
   }
 
-
   /**
    * Alias of User::getIsGuest()
-   * 
+   *
    * @return boolean
    */
   public function isGuest ()
   {
     return $this->getIsGuest();
+  }
+
+  /**
+   * Is the user trusted ?
+   * 
+   * @return boolean
+   */
+  public function isTrusted ()
+  {
+    return ! $this->getIsGuest();
   }
 
   /**

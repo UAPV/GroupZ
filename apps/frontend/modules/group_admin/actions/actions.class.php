@@ -25,12 +25,18 @@ class group_adminActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->form = new GroupForm($this->getRoute()->getObject());
+    $group = $this->getGroup ();
+    $this->checkOwner ($group);
+
+    $this->form = new GroupForm($group);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->form = new GroupForm($this->getRoute()->getObject());
+    $group = $this->getGroup ();
+    $this->checkOwner ($group);
+
+    $this->form = new GroupForm($group);
 
     $this->processForm($request, $this->form);
 
@@ -41,7 +47,9 @@ class group_adminActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->getRoute()->getObject()->delete();
+    $group = $this->getGroup ();
+    $this->checkOwner ($group);
+    $group->delete();
 
     $this->redirect('@homepage');
   }
@@ -55,5 +63,35 @@ class group_adminActions extends sfActions
 
       $this->redirect('@group_admin_edit?name='.$Group->getName());
     }
+  }
+
+  /**
+   * @return Group
+   */
+  protected function getGroup ()
+  {
+    return $this->getRoute()->getObject();
+  }
+
+  /**
+   * Forwards the current request to the secure action.
+   *
+   * @throws sfStopException
+   */
+  protected function forwardToSecureAction()
+  {
+    $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
+  }
+
+  /**
+   * Checks if the connected user is the owner of the group
+   *
+   * @param  $group
+   * @return void
+   */
+  protected function checkOwner ($group)
+  {
+    if ($this->getUser ()->getId () != $group->getCreatedBy ())
+      $this->forwardToSecureAction();
   }
 }
