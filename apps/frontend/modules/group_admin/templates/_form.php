@@ -68,10 +68,10 @@
     <label><?php echo _('Group members') ?></label>
     <ul class="users">
       <?php foreach ($form->getObject()->getUsers () as $user): ?>
-        <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>
-          <?php echo input_hidden_tag ('group[users][]', $user->getId()) ?>
+        <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>>
+          <input type="hidden" name="group[users][]" value="<?php echo $user->getId() ?>" />
           <span class="user_fullname"><?php echo $user->getFullname (); ?></span>
-          <span class="user_email"><?php echo link_to ('mailto:'.$user->getEmail (), $user->getEmail ()) ?></span>
+          <span class="user_email"><a href="mailto:<?php echo $user->getEmail () ?>"><?php echo $user->getEmail () ?></a></span>
           <span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>
         </li>
       <?php endforeach; ?>

@@ -34,7 +34,7 @@ class userActions extends gzActions
         'guest' => false
       );
 
-      if ($userDb = UserQuery::create()->findOneByMail($user['mail']))
+      if ($userDb = UserQuery::create()->findOneByEmail($user['mail']))
         $userData['id'] = $userDb->getId ();
 
       $data [] = $userData;
@@ -66,7 +66,7 @@ class userActions extends gzActions
     }
 
     // Does the user already exists in the DB
-    $user = UserQuery::create ()->findOneByMail($email);
+    $user = UserQuery::create ()->findOneByEmail($email);
     if ($user === null)
     {
       // Does the user exist in the LDAP
@@ -79,7 +79,7 @@ class userActions extends gzActions
       {
         $user = new User ();
         $user->setIsGuest (true);
-        $user->setMail ($email);
+        $user->setEmail ($email);
         $user->setAddedBy($this->getUser()->getId());
         $user->save();
       }
@@ -88,7 +88,7 @@ class userActions extends gzActions
     return $this->returnJSON(array (
       'id' => $user->getId (),
       'fullname' => $user->getFullname (),
-      'email' => $user->getMail (),
+      'email' => $user->getEmail (),
       'guest' => $user->isGuest ()
     ));
   }

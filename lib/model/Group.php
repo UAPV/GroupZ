@@ -28,5 +28,12 @@ class Group extends BaseGroup {
   {
     return $this->getName().'@groupes.univ-avignon.fr'; // TODO
   }
-  
+
+  public function addUser ($user)
+  {
+    // TODO send confirmation email
+
+    return parent::addUser($user);
+  }
+
 } // Group

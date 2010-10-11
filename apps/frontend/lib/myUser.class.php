@@ -27,7 +27,7 @@ class myUser extends uapvBasicSecurityUser
   {
     parent::signIn ($login);
 
-    $userDb = UserQuery::create ()->findOneByMail ($this->getProfileVar('mail'));
+    $userDb = UserQuery::create ()->findOneByEmail ($this->getProfileVar('mail'));
 
     if ($userDb === null)
       $userDb = UserPeer::createFromLdap ($this->getProfile ()->getAll ());

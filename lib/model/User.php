@@ -35,9 +35,9 @@ class User extends BaseUser {
    * @param      string $v new value
    * @return     User The current object (for fluent API support)
    */
-  public function setMail($v)
+  public function setEmail($v)
   {
-    parent::setMail(strtolower($v));
+    parent::setEmail(strtolower($v));
   }
 
 

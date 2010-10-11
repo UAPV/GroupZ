@@ -31,7 +31,7 @@ propel:
     added_by:       { type: integer       } # if the user is not internal, store the person who invited him
     firstname:      { type: varchar(255) }
     lastname:       { type: varchar(255) }
-    mail:           { type: varchar(255) }
+    email:          { type: varchar(255) }
     org:            { type: varchar(255) }
     tel:            { type: varchar(10)  }
     password:       { type: varchar(40)  } # SHA1 invitation code
