@@ -6,7 +6,7 @@
 
 .uapv_header {
   background: #494846;
-  background: -moz-linear-gradient(#3E3931 0%, #302C25 100%);
+  background: -moz-linear-gradient(#DCD9D5 0%, #D1CDC8 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCD9D5), color-stop(100%, #D1CDC8));
 }
 
@@ -248,14 +248,19 @@ ul#breadcrumb {
   margin: 0;
   padding: 0.6em 2em;
   background: #B7B4B0;
-  color: #FFF;
+  background: -moz-linear-gradient(#B7B4B0 70%, #A7A49F 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, #B7B4B0), color-stop(100%, #A7A49F));
+  border-bottom: 1px solid #918D89;
 }
+ul#breadcrumb ,
 ul#breadcrumb li a:hover {
-  color: #FFF;
+  color: #565553;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.5);
 }
 ul#breadcrumb li a {
-  color: #59554D;
   text-decoration: none;
+  color: #FFF;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
 }
 ul#breadcrumb:hover a {
   text-decoration: underline;
