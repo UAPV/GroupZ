@@ -57,24 +57,26 @@ form label {
 
 /* Edit group page */
 
-.new_group #name span {
+.group_form {
+
+}
+.group_form #name span {
     font-size: larger;
 }
-
-.new_group #title input {
+.group_form #title input {
     width: 90%;
 }
-.new_group #description textarea {
+.group_form #description textarea {
     width: 98%;
 }
-
-.new_group #is_public label {
+.group_form #is_public label {
     display: inline;
 }
 
 .group_members {
     position: relative;
     padding-bottom: 4em;
+    padding-right: 26.5em;
 }
 .group_members #new_member {
     position: absolute;
@@ -95,6 +97,57 @@ form label {
     max-height: 200px;
     overflow-y: auto;
 }
+
+.group_members .users {
+  margin: 0;  
+}
+.group_members .users li {
+  padding: 0.7em 1.5em;
+  background: #F6F5F3;
+  list-style: none;
+  border: 1px solid #E2E0E0;
+  position: relative;
+  background: -moz-linear-gradient(#FFF 30%, #F5F4F3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #FFF), color-stop(100%, #F5F4F3));
+}
+.group_members .users li:hover {
+  background: -moz-linear-gradient(#F5F4F3 30%, #FFF 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #F5F4F3), color-stop(100%, #FFF));
+}
+.group_members .users li + li {
+  border-top: none;
+}
+.group_members .users li:first-child {
+  -moz-border-radius-topright:     5px;
+  -webkit-border-top-left-radius:  5px;
+  border-radius-topright:          5px;
+  -moz-border-radius-topleft:      5px;
+  -webkit-border-top-right-radius: 5px;
+  border-radius-topleft:           5px;
+}
+.group_members .users li:last-child {
+  -moz-border-radius-bottomright:     5px;
+  -webkit-border-bottom-left-radius:  5px;
+  border-radius-bottomright:          5px;
+  -moz-border-radius-bottomleft:      5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-radius-bottomleft:           5px;
+}
+.group_members .users li .user_delete {
+  position: absolute;
+  top: 1.2em;
+  right: 1em;
+  text-indent: -3000px;
+  display: block;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  background: transparent url(../images/icons/list-remove.png) no-repeat right center;
+}
+.group_members .users li .user_email {
+  display: block;
+}
+
 /* IE 6 doesn't support max-height
 * we use height instead, but this forces the menu to always be this tall
 */

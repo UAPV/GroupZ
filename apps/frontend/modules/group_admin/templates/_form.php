@@ -3,7 +3,7 @@
 
 <?php  /* @var $form sfFormSymfony */  ?>
 
-<form action="<?php echo url_for(($form->getObject()->isNew() ? '@group_admin_create' : '@group_admin_update').(!$form->getObject()->isNew() ? '?name='.$form->getObject()->getName() : '')) ?>" method="post" >
+<form class="group_form" action="<?php echo url_for(($form->getObject()->isNew() ? '@group_admin_create' : '@group_admin_update').(!$form->getObject()->isNew() ? '?name='.$form->getObject()->getName() : '')) ?>" method="post" >
   <?php if (!$form->getObject()->isNew()): ?>
     <input type="hidden" name="sf_method" value="put" />
   <?php endif; ?>
@@ -39,7 +39,7 @@
     });
   </script>
 
-  <ul class="fields on-2 columns new_group">
+  <ul class="fields on-2 columns">
     <li class="column" id="title">
       <?php echo $form['title']->renderLabel() ?>
       <?php echo $form['title']->render() ?>
@@ -78,7 +78,7 @@
     </ul>
     <div id="new_member"">
       <label for="autocomplete_user"><?php echo _('Add user') ?></label>
-      <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email of your contact') ?>" />
+      <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email') ?>" />
       <input type="submit" id="add_user" value="<?php  echo _('Add') ?>" />
 
       <script type="text/javascript" src="<?php echo javascript_path('jquery-ui-1.8.5.custom.min.js') ?>" ></script>
@@ -160,7 +160,7 @@
               '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
             '</li>');
         }
-        
+
       </script>
       <?php use_stylesheet('jqueryui/jquery-ui-1.8.5.custom.css', sfWebResponse::LAST) ?>
     </div>
