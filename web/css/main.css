@@ -44,7 +44,7 @@ form ul.fields {
 
 form ul.fields li {
     list-style: none;
-    margin: 1.5em 0;
+    margin: 0.5em 0;
 }
 
 form label {
@@ -146,6 +146,10 @@ form label {
 }
 .group_members .users li .user_email {
   display: block;
+}
+.group_members .users li .invitation_pending {
+  color: #ECAE25;
+  font-style : italic;
 }
 
 /* IE 6 doesn't support max-height

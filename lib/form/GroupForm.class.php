@@ -27,16 +27,19 @@ class GroupForm extends BaseGroupForm
       'multiple' => true,
       'required' => false
     ));
+
+    if (! $this->getObject()->isNew ())
+      unset($this['name']);
   }
 
   public function updateUsersColumn ($users)
   {
     $group = $this->getObject ();     /* @var $group Group */
 
-    $members = $group->getGroupMembers();
+    $members = $group->getAllMembers();
     $membersIds = array ();
     foreach ($members as $member)
-      $membersIds [] = $member->getUserId ();
+      $membersIds [] = $member->getId ();
 
     if (! is_array($users))
       $users = array();
@@ -46,16 +49,21 @@ class GroupForm extends BaseGroupForm
     {
       // TODO prevent someone from self adding to the group
       $user = UserQuery::create()->findPk ($userId);
-      $group->addUser ($user);
+      $group->inviteUser ($user);
     }
 
     // Check deleted users
     $deletedUserIds = array_diff ($membersIds, $users);
     if (count ($deletedUserIds))
     {
-      $deleteQuery = GroupMemberQuery::create ()
+      GroupMemberQuery::create ()
         ->filterByGroup ($group)
         ->where ('GroupMember.UserId IN ?', $deletedUserIds)
+        ->delete();
+
+      InvitationQuery::create ()
+        ->filterByGroup ($group)
+        ->where ('Invitation.UserId IN ?', $deletedUserIds)
         ->delete();
     }
   }

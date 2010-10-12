@@ -49,12 +49,17 @@ class myUser extends uapvBasicSecurityUser
     if ($userDb === null)
       $userDb = UserPeer::createFromLdap ($this->getProfile ()->getAll ());
 
-    $this->setAttribute ('user', $userDb->toArray ());
+    $this->setUserObject($userDb);
 
     // configure credentials
     if ($userDb->isGuest ())
       $this->addCredential('guest');
     else
       $this->addCredential('trusted');
+  }
+
+  public function setUserObject (User $user)
+  {
+    $this->setAttribute ('user', $user->toArray ());
   }
 }

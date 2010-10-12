@@ -56,7 +56,7 @@ class group_adminActions extends sfActions
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    $form->bind($request->getParameter($form->getName()));
     if ($form->isValid())
     {
       $Group = $form->save();

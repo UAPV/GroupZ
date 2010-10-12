@@ -19,4 +19,28 @@
  */
 class InvitationPeer extends BaseInvitationPeer {
 
+  public static function createInvitation (Group $group, User $user)
+  {
+    // Check if an invitation isn't still pending
+    $invitation = InvitationQuery::create ()
+      ->filterByGroup ($group)
+      ->filterByUser ($user)
+      ->findOne ();
+
+    if ($invitation !== null)
+      return $invitation;
+
+    $invitation = new Invitation ();
+    $invitation->setGroup ($group);
+    $invitation->setUser ($user);
+    $invitation->setHash (sha1 ($user->getId().$group->getId().time().mt_rand()));
+    $invitation->save ();
+
+    // TODO try catch in case of sha1 collision : catch () { Play LOTO }
+
+    // TODO send invitation email. Here ???
+
+    return $invitation;
+  }
+
 } // InvitationPeer

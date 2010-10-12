@@ -19,4 +19,27 @@
  */
 class UserQuery extends BaseUserQuery {
 
+  /**
+   * @param bool $withInvitations
+   * @return UserQuery
+   */
+  public function filterByGroupAndInvitations (Group $group)
+  {
+    return $this
+      ->joinInvitation  (null, Criteria::LEFT_JOIN)
+      ->joinGroupMember (null, Criteria::LEFT_JOIN)
+      ->where ('Invitation.GroupId = ?', $group->getId ())
+      ->orWhere ('GroupMember.GroupId = ?', $group->getId ())
+      ->withColumn ('Invitation.Hash', 'InvitationCode');
+  }
+
+  /**
+   * @return UserQuery
+   */
+  public function orderByName ()
+  {
+    return $this->orderByLastname()
+                ->orderByFirstname();
+  }
+  
 } // UserQuery

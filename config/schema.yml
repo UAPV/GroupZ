@@ -34,7 +34,7 @@ propel:
     email:          { type: varchar(255) }
     org:            { type: varchar(255) }
     tel:            { type: varchar(10)  }
-    password:       { type: varchar(40)  } # SHA1 invitation code
+    password:       { type: varchar(40)  } # SHA1
     created_at: ~
 
   gz_group_member:
@@ -44,11 +44,8 @@ propel:
 
   gz_invitation:
     _attributes :   { phpName: Invitation }
-    id: ~
-    group_id: ~
-    user_id: ~
-    hash:           { type: varchar(40), required: true } # SHA1 invitation code
-    invite:         { type: integer, default: 0 } # ????
+    group_id:       { type: integer, primaryKey: true, required: true, foreignTable: gz_group, foreignReference: id }
+    user_id:        { type: integer, primaryKey: true, required: true, foreignTable: gz_user,  foreignReference: id }
+    hash:           { type: varchar(40), index: unique } # SHA1 invitation code
     created_at: ~
-    _indexes:       { hash_idx: [ hash ] }
 

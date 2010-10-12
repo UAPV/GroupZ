@@ -29,11 +29,36 @@ class Group extends BaseGroup {
     return $this->getName().'@groupes.univ-avignon.fr'; // TODO
   }
 
+  /**
+   * @param  $user
+   * @return void
+   */
   public function addUser ($user)
   {
-    // TODO send confirmation email
+    // TODO Add the user to the mailing list !
+
+    // TODO send confirmation email !
 
     return parent::addUser($user);
+  }
+
+  /**
+   * Create an invitation an send it.
+   *
+   * @param User $user
+   * @return void
+   */
+  public function inviteUser (User $user)
+  {
+    return InvitationPeer::createInvitation ($this, $user);
+  }
+
+  public function getAllMembers ()
+  {
+    return UserQuery::create ()
+      ->orderByName ()
+      ->filterByGroupAndInvitations($this)
+      ->find ();
   }
 
 } // Group

@@ -46,19 +46,24 @@
       <?php echo $form['title']->renderError() ?>
     </li>
     <li class="column" id="name">
-      <?php echo $form['name']->renderLabel() ?>
-      <?php echo $form['name']->render() ?>
-      <span>
-        @groupes.univ-avignon.fr <?php // TODO changeme ?>
-      </span>
-      <?php echo $form['name']->renderError() ?>
+      <?php if ($form->getObject()->isNew ()): ?>
+        <?php echo $form['name']->renderLabel() ?>
+        <?php echo $form['name']->render() ?>
+        <span>
+          @groupes.univ-avignon.fr <?php // TODO changeme ?>
+        </span>
+        <?php echo $form['name']->renderError() ?>
+      <?php else: ?>
+        <label><?php echo _('Name') ?></label>
+        <div><?php echo $form->getObject ()->getEmail (); ?></div>
+      <?php endif ?>
     </li>
-    <li id="description">
+    <li id="description" class="column span-2">
       <?php echo $form['description']->renderLabel() ?>
       <?php echo $form['description']->render() ?>
       <?php echo $form['description']->renderError() ?>
     </li>
-    <li id="is_public">
+    <li id="is_public" class="column span-2">
       <?php echo $form['is_public']->render() ?>
       <?php echo $form['is_public']->renderLabel() ?>
     </li>
@@ -67,10 +72,13 @@
   <div class="group_members">
     <label><?php echo _('Group members') ?></label>
     <ul class="users">
-      <?php foreach ($form->getObject()->getUsers () as $user): ?>
+      <?php foreach ($form->getObject()->getAllMembers () as $user): ?>
         <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>>
           <input type="hidden" name="group[users][]" value="<?php echo $user->getId() ?>" />
           <span class="user_fullname"><?php echo $user->getFullname (); ?></span>
+          <?php if ($user->getInvitationCode ()): ?>
+            <span class="invitation_pending">(<?php echo _('Invitation pending') ?>)</span>
+          <?php endif ?>
           <span class="user_email"><a href="mailto:<?php echo $user->getEmail () ?>"><?php echo $user->getEmail () ?></a></span>
           <span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>
         </li>
@@ -156,6 +164,7 @@
             '<li '+(user.guest ? 'class="guest_user"' : '')+'>'+
               '<input type="hidden" name="group[users][]" value="'+user.id+'"/>'+
               '<span class="user_fullname">'+user.fullname+'</span> '+
+              '<span class="invitation_pending">(<?php echo _('Invitation pending') ?>)</span>'+
               '<span class="user_email"><a href="mailto:'+user.email+'">'+user.email+'</a></span> '+
               '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
             '</li>');
