@@ -113,6 +113,9 @@ form label {
 .group_members .users li:hover {
   background: -moz-linear-gradient(#F5F4F3 30%, #FFF 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #F5F4F3), color-stop(100%, #FFF));
+  -moz-box-shadow:	  inset 0px 1px 3px rgba(0,0,0,0.06);
+	-webkit-box-shadow: inset 0px 1px 3px rgba(0,0,0,0.06);
+	box-shadow:				  inset 0px 1px 3px rgba(0,0,0,0.06);
 }
 .group_members .users li + li {
   border-top: none;

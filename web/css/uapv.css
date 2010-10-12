@@ -94,8 +94,9 @@ input {
   -webkit-border-radius: 4px;
   border-radius:         4px;
   border: 1px solid #E2E0E0;
-  background: -moz-linear-gradient(#F5F4F3 30%, #FFF 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F5F4F3), color-stop(70%, #FFF));
+  background: #FEFEFE;
+  background: -moz-linear-gradient(#F5F4F3 30%, #FEFEFE 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F9F9F8), color-stop(100%, #FEFEFE));
 }
 
 form label {
