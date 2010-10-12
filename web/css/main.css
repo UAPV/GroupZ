@@ -362,3 +362,16 @@ ul#breadcrumb li:last-child {
   -webkit-border-radius:  5px;
   border-radius:          5px;
 }
+
+/* qtip */
+
+.ui-tooltip-dark .ui-tooltip-wrapper{
+	border: none;
+	background-color: #505050;
+	background-color: rgba(0,0,0,0.8);
+  -moz-box-shadow:	  0px 1px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0px 1px 15px rgba(0,0,0,0.4);
+	box-shadow:				  0px 1px 5px rgba(0,0,0,0.5);
+  -webkit-border-radius: 3px;
+	color: #f3f3f3;
+}

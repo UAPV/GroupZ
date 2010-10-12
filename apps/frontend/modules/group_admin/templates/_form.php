@@ -1,6 +1,10 @@
 <?php use_stylesheets_for_form($form) ?>
 <?php use_javascripts_for_form($form) ?>
 
+<?php use_stylesheet('jquery.qtip.css', sfWebResponse::FIRST) ?>
+<?php use_javascript('jquery.qtip.js', sfWebResponse::LAST) ?>
+<?php use_javascript('gzTips', sfWebResponse::LAST) ?>
+
 <?php  /* @var $form sfFormSymfony */  ?>
 
 <form class="group_form" action="<?php echo url_for(($form->getGroup()->isNew() ? '@group_admin_create' : '@group_admin_update').(!$form->getGroup()->isNew() ? '?name='.$form->getGroup()->getName() : '')) ?>" method="post" >
@@ -64,7 +68,7 @@
       <?php echo $form['description']->renderError() ?>
     </li>
     <li id="is_public" class="column span-2">
-      <?php echo $form['is_public']->render() ?>
+      <?php echo $form['is_public']->render(array ('title'=>_('Wheter the group will be visible and open to subscription to others people'))) ?>
       <?php echo $form['is_public']->renderLabel() ?>
     </li>
   </ul>
@@ -82,7 +86,7 @@
             </span>
           <?php endif ?>
           <span class="user_email"><a href="mailto:<?php echo $user->getEmail () ?>"><?php echo $user->getEmail () ?></a></span>
-          <span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>
+          <span class="user_delete" title="<?php echo _('Delete member') ?>"><a href="#"><?php echo _('Delete') ?></a></span>
         </li>
       <?php endforeach; ?>
     </ul>
@@ -94,10 +98,11 @@
     
     <div id="new_member"">
       <label for="autocomplete_user"><?php echo _('Add user') ?></label>
-      <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email') ?>" />
+      <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email') ?>" title="<?php
+        echo _('Type a name or email of your contact, then select him in the list. ') ?>"/>
       <input type="submit" id="add_user" value="<?php  echo _('Add') ?>" />
 
-      <script type="text/javascript" src="<?php echo javascript_path('jquery-ui-1.8.5.custom.min.js') ?>" ></script>
+      <?php echo javascript_include_tag ('jquery-ui.js') ?>
       <script type="text/javascript">
 
         // Initialize the user autocompleter
