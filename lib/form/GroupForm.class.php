@@ -21,6 +21,9 @@ class GroupForm extends BaseGroupForm
     unset($this['created_at']);
     unset($this['updated_at']);
     unset($this['group_member_list']);
+    unset($this['invitation_list']);
+
+    $this->widgetSchema['users'] = new sfWidgetFormChoice (array('multiple' => true, 'choices' => array() ));
 
     $this->validatorSchema ['users'] = new sfValidatorPropelChoice (array (
       'model' => 'User',
@@ -28,18 +31,24 @@ class GroupForm extends BaseGroupForm
       'required' => false
     ));
 
+    $this->setDefault ('users', $this->getSavedMemberIds ());
+
     if (! $this->getObject()->isNew ())
       unset($this['name']);
   }
 
-  public function updateUsersColumn ($users)
+  protected function doSave($con = null)
   {
-    $group = $this->getObject ();     /* @var $group Group */
+    parent::doSave($con);
 
-    $members = $group->getAllMembers();
-    $membersIds = array ();
-    foreach ($members as $member)
-      $membersIds [] = $member->getId ();
+    $this->saveMembersList ($this->getValue ('users'));
+  }
+
+  public function saveMembersList ($users)
+  {
+    $group = $this->getObject (); /* @var $group Group */
+
+    $membersIds = $this->getSavedMemberIds ();
 
     if (! is_array($users))
       $users = array();
@@ -66,5 +75,42 @@ class GroupForm extends BaseGroupForm
         ->where ('Invitation.UserId IN ?', $deletedUserIds)
         ->delete();
     }
+  }
+
+  /**
+   * Return selected users or default ones (from DB).
+   * (Too lazy to make a proper widget. for now)
+   *
+   * @return array
+   */
+  public function getMembers ()
+  {
+    $userIds = $this['users']->getValue ();
+
+    // Users should already be in the instance pool, so we retrieve them
+    // one by one with findPk
+    $users = array ();
+    foreach ($userIds as $uid)
+      $users[] = UserQuery::create ()->findPk($uid);
+
+    return $users;
+  }
+
+  /**
+   * Get group members (+ invited) IDs stored in DB.  
+   * (Too lazy to make a proper widget. for now)
+   *
+   * @return array
+   */
+  public function getSavedMemberIds ()
+  {
+    $group = $this->getObject (); /* @var $group Group */
+
+    $members = $group->getAllMembers();
+    $membersIds = array ();
+    foreach ($members as $member)
+      $membersIds [] = $member->getId ();
+
+    return $membersIds;
   }
 }

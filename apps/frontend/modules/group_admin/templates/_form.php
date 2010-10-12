@@ -72,11 +72,11 @@
   <div class="group_members">
     <label><?php echo _('Group members') ?></label>
     <ul class="users">
-      <?php foreach ($form->getObject()->getAllMembers () as $user): ?>
+      <?php foreach ($form->getMembers () as $user): ?>
         <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>>
           <input type="hidden" name="group[users][]" value="<?php echo $user->getId() ?>" />
           <span class="user_fullname"><?php echo $user->getFullname (); ?></span>
-          <?php if ($user->getInvitationCode ()): ?>
+          <?php if ($user->hasInvitationForGroup ($form->getObject ())): ?>
             <span class="invitation_pending">(<?php echo _('Invitation pending') ?>)</span>
             <span class="invitation_resend"><a href="#TODO"><?php echo _('Resend invitation') ?></a></span>
           <?php endif ?>
@@ -95,9 +95,9 @@
 
         // Initialize the user autocompleter
         $('#autocomplete_user').autocomplete ({
-			source: "<?php echo url_for('user/autocomplete') ?>",
-			minLength: 2,
-            select: selectUser
+          source: "<?php echo url_for('user/autocomplete') ?>",
+          minLength: 2,
+                select: selectUser
         })
 
         // Function called to customize the autocomplete list rendering
@@ -165,7 +165,6 @@
             '<li '+(user.guest ? 'class="guest_user"' : '')+'>'+
               '<input type="hidden" name="group[users][]" value="'+user.id+'"/>'+
               '<span class="user_fullname">'+user.fullname+'</span> '+
-              '<span class="invitation_pending">(<?php echo _('Invitation pending') ?>)</span>'+
               '<span class="user_email"><a href="mailto:'+user.email+'">'+user.email+'</a></span> '+
               '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
             '</li>');

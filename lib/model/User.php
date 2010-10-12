@@ -70,4 +70,18 @@ class User extends BaseUser {
     return $this->getGroups(); // TODO need to be changed if we include the user in the group members (implicit now)
   }
 
+  /**
+   * Tell if the user has an invitation pending for the group $group.
+   *
+   * @param Group $group
+   * @return boolean
+   */
+  public function hasInvitationForGroup (Group $group)
+  {
+    return (InvitationQuery::create ()
+      ->filterByGroup($group)
+      ->filterByUser($this)
+      ->count () > 0);
+  }
+
 } // User

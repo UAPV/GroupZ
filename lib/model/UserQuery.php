@@ -29,8 +29,7 @@ class UserQuery extends BaseUserQuery {
       ->joinInvitation  (null, Criteria::LEFT_JOIN)
       ->joinGroupMember (null, Criteria::LEFT_JOIN)
       ->where ('Invitation.GroupId = ?', $group->getId ())
-      ->orWhere ('GroupMember.GroupId = ?', $group->getId ())
-      ->withColumn ('Invitation.Hash', 'InvitationCode');
+      ->orWhere ('GroupMember.GroupId = ?', $group->getId ());
   }
 
   /**
