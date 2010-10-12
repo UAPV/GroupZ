@@ -78,6 +78,7 @@
           <span class="user_fullname"><?php echo $user->getFullname (); ?></span>
           <?php if ($user->getInvitationCode ()): ?>
             <span class="invitation_pending">(<?php echo _('Invitation pending') ?>)</span>
+            <span class="invitation_resend"><a href="#TODO"><?php echo _('Resend invitation') ?></a></span>
           <?php endif ?>
           <span class="user_email"><a href="mailto:<?php echo $user->getEmail () ?>"><?php echo $user->getEmail () ?></a></span>
           <span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>

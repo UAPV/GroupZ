@@ -133,15 +133,22 @@ form label {
   -webkit-border-bottom-right-radius: 5px;
   border-radius-bottomleft:           5px;
 }
+.group_members .users li .invitation_resend ,
 .group_members .users li .user_delete {
   position: absolute;
   top: 1.2em;
-  right: 1em;
   text-indent: -3000px;
   display: block;
   width: 22px;
   height: 22px;
   cursor: pointer;
+}
+.group_members .users li .invitation_resend {
+  right: 3.3em;
+  background: transparent url(../images/icons/mail-resend.png) no-repeat right center;
+}
+.group_members .users li .user_delete {
+  right: 1em;
   background: transparent url(../images/icons/list-remove.png) no-repeat right center;
 }
 .group_members .users li .user_email {
