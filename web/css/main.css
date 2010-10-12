@@ -102,7 +102,7 @@ form label {
   margin: 0;  
 }
 
-.group_members .users li .invitation_resend ,
+.group_members .users li .invitation_pending ,
 .group_members .users li .user_delete {
   position: absolute;
   top: 1.2em;
@@ -112,9 +112,22 @@ form label {
   height: 22px;
   cursor: pointer;
 }
-.group_members .users li .invitation_resend {
+#resend_group_invitations ,
+.group_members .users li .invitation_pending {
   right: 3.3em;
+  padding-right: 28px;
+  text-indent: 0;
+  width: auto;
   background: transparent url(../images/icons/mail-resend.png) no-repeat right center;
+}
+#resend_group_invitations {
+  background-position: left bottom;
+  padding: 2em 0 0.5em 28px;
+  display: block;
+}
+.group_members .users li .invitation_pending a {
+  color: #E49A06;
+  font-style : italic;
 }
 .group_members .users li .user_delete {
   right: 1em;
@@ -123,10 +136,7 @@ form label {
 .group_members .users li .user_email {
   display: block;
 }
-.group_members .users li .invitation_pending {
-  color: #ECAE25;
-  font-style : italic;
-}
+
 
 /* IE 6 doesn't support max-height
 * we use height instead, but this forces the menu to always be this tall

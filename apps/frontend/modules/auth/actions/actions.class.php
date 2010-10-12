@@ -15,9 +15,4 @@ class authActions extends sfActions
     // TODO
   }
 
-
-  public function executeDetectCas (sfWebRequest $request)
-  {
-    // TODO
-  }
 }

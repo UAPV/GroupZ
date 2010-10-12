@@ -64,4 +64,14 @@ class Group extends BaseGroup {
       ->find ();
   }
 
+  /**
+   * @return boolean
+   */
+  public function hasPendingInvitations ()
+  {
+    return (InvitationQuery::create ()
+      ->filterByGroup($this)
+      ->count() > 0);
+  }
+
 } // Group

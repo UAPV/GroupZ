@@ -5,7 +5,6 @@
  */
 class gzActions extends sfActions
 {
-
   /**
    * Return in JSON when requested via AJAX or as plain text when requested directly in debug mode
    *
@@ -24,4 +23,13 @@ class gzActions extends sfActions
     return $this->renderText($json);
   }
 
+  /**
+   * Forwards the current request to the secure action.
+   *
+   * @throws sfStopException
+   */
+  protected function forwardToSecureAction()
+  {
+    $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
+  }
 }

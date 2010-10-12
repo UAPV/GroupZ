@@ -7,7 +7,7 @@
  * @subpackage group_admin
  * @author     Arnaud Didry <arnaud@didry.info>
  */
-class group_adminActions extends sfActions
+class group_adminActions extends gzActions
 {
   public function executeNew(sfWebRequest $request)
   {
@@ -71,16 +71,6 @@ class group_adminActions extends sfActions
   protected function getGroup ()
   {
     return $this->getRoute()->getObject();
-  }
-
-  /**
-   * Forwards the current request to the secure action.
-   *
-   * @throws sfStopException
-   */
-  protected function forwardToSecureAction()
-  {
-    $this->forward(sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
   }
 
   /**

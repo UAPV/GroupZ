@@ -113,4 +113,12 @@ class GroupForm extends BaseGroupForm
 
     return $membersIds;
   }
+
+  /**
+   * @return Group
+   */
+  public function getGroup ()
+  {
+    return $this->getObject();
+  }
 }

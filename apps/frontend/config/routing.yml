@@ -8,12 +8,23 @@ homepage:
 
 # Accept invitation
 invitation_accept:
-  url: /invitation/:invitation/accept
+  url: /invitation/reply/:invitation/accept
   param: { module: invitation, action: accept }
 
+# Decline invitation
 invitation_decline:
-  url: /invitation/:invitation/accept
+  url: /invitation/reply/:invitation/accept
   param: { module: invitation, action: decline }
+
+# Re-send invitation to a group
+invitation_group:
+  url: /invitation/group/:group_name
+  param: { module: invitation, action: resendGroup }
+
+# Re-send invitation to one user
+invitation_user:
+  url: /invitation/user/:user/:group_name
+  param: { module: invitation, action: resendUser }
 
 # group edition (registered user only)
 group_admin:
