@@ -55,6 +55,9 @@ class Group extends BaseGroup {
 
   public function getAllMembers ()
   {
+    if ($this->isNew ())
+      return array ();
+
     return UserQuery::create ()
       ->orderByName ()
       ->filterByGroupAndInvitations($this)
