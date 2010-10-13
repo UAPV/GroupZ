@@ -5,6 +5,9 @@ prod:
   .settings:
     no_script_name:         true
     logging_enabled:        false
+    prod:
+      .settings:
+        logging_enabled:    true
 
 dev:
   .settings:
