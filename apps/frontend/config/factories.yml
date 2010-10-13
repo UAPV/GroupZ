@@ -31,9 +31,17 @@ test:
 dev:
   mailer:
     param:
-      delivery_strategy: none
+      delivery_strategy: single_address
+      delivery_address:  arnaud@didry.info
 
 all:
+  mailer:
+    param:
+      transport:
+        param:
+          host: smtp.univ-avignon.fr
+          port: 25
+
   routing:
     class: sfPatternRouting
     param:

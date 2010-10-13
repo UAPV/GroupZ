@@ -46,7 +46,7 @@ class Group extends BaseGroup {
    * Create an invitation an send it.
    *
    * @param User $user
-   * @return void
+   * @return Invitation
    */
   public function inviteUser (User $user)
   {

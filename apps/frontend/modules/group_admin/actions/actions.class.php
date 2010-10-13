@@ -47,6 +47,8 @@ class group_adminActions extends gzActions
   {
     $request->checkCSRFProtection();
 
+    // TODO Ask confirmation twice !
+
     $group = $this->getGroup ();
     $this->checkOwner ($group);
     $group->delete();
@@ -60,6 +62,27 @@ class group_adminActions extends gzActions
     if ($form->isValid())
     {
       $Group = $form->save();
+      
+      // TODO set flash message
+
+      $invitations = $form->getInvitations ();
+      foreach ($invitations as $invitation)
+      {
+        try
+        {
+          $this->sendEmail($invitation->getUser()->getEmail(), 'email_invitation', array ('invitation' => $invitation));
+        }
+        catch (Exception $e)
+        {
+          // Stop exception in order to be able to send the other invitations left
+          // TODO log this !
+        }
+      }
+
+      if (count ($invitations) > 0)
+      {
+        // TODO flash += "notifs sent"
+      }
 
       $this->redirect('@group_admin_edit?name='.$Group->getName());
     }

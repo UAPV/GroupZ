@@ -8,12 +8,12 @@ homepage:
 
 # Accept invitation
 invitation_accept:
-  url: /invitation/reply/:invitation/accept
+  url: /invitation/accept/:invitation
   param: { module: invitation, action: accept }
 
 # Decline invitation
 invitation_decline:
-  url: /invitation/reply/:invitation/accept
+  url: /invitation/decline/:invitation
   param: { module: invitation, action: decline }
 
 # Re-send invitation to a group

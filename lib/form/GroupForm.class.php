@@ -9,6 +9,8 @@
  */
 class GroupForm extends BaseGroupForm
 {
+  protected $invitations = array ();
+
   public function configure()
   {
     $this->widgetSchema->setFormFormatterName('list');
@@ -58,7 +60,7 @@ class GroupForm extends BaseGroupForm
     {
       // TODO prevent someone from self adding to the group
       $user = UserQuery::create()->findPk ($userId);
-      $group->inviteUser ($user);
+      $this->invitations [] = $group->inviteUser ($user);
     }
 
     // Check deleted users
@@ -115,10 +117,22 @@ class GroupForm extends BaseGroupForm
   }
 
   /**
+   * Alias of $this->getObject ()
+   *
    * @return Group
    */
   public function getGroup ()
   {
     return $this->getObject();
+  }
+
+  /**
+   * Return new invitations to send
+   *
+   * @return array
+   */
+  public function getInvitations ()
+  {
+    return $this->invitations;
   }
 }

@@ -38,8 +38,6 @@ class InvitationPeer extends BaseInvitationPeer {
 
     // TODO try catch in case of sha1 collision : catch () { Play LOTO }
 
-    // TODO send invitation email. Here ???
-
     return $invitation;
   }
 
