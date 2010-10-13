@@ -156,10 +156,12 @@ form label {
   right: 0;
   font-size: 0.6em;
   padding: 10px 15px ;
+	/*
   padding-left: 40px;
   background-image: url(../images/icons/new-group.png);
   background-repeat: no-repeat;
   background-position: 10px center;
+	*/
 }
 
 .group_list {
@@ -327,6 +329,7 @@ ul#breadcrumb li:last-child {
   background: -moz-linear-gradient(#FFF 30%, #F5F4F3 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #FFF), color-stop(100%, #F5F4F3));
 }
+/*
 .group_list li.group:hover ,
 .group_members .users li:hover {
   background: -moz-linear-gradient(#F5F4F3 30%, #FFF 100%);
@@ -335,6 +338,7 @@ ul#breadcrumb li:last-child {
 	-webkit-box-shadow: inset 0px 1px 3px rgba(0,0,0,0.06);
 	box-shadow:				  inset 0px 1px 3px rgba(0,0,0,0.06);
 }
+*/
 .group_list li.group + li ,
 .group_members .users li + li {
   border-top: none;
@@ -369,9 +373,9 @@ ul#breadcrumb li:last-child {
 	border: none;
 	background-color: #505050;
 	background-color: rgba(0,0,0,0.8);
-  -moz-box-shadow:	  0px 1px 5px rgba(0,0,0,0.5);
+  -moz-box-shadow:	  0px 1px 15px rgba(0,0,0,0.4);
 	-webkit-box-shadow: 0px 1px 15px rgba(0,0,0,0.4);
-	box-shadow:				  0px 1px 5px rgba(0,0,0,0.5);
+	box-shadow:				  0px 1px 15px rgba(0,0,0,0.4);
   -webkit-border-radius: 3px;
 	color: #f3f3f3;
 }

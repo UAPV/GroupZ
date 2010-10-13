@@ -106,9 +106,9 @@ form label {
 input[type=submit],
 button,
 .button:visited {
-  background: #1E52A1;
   display: inline-block;
   padding: 5px 10px 6px;
+	margin: 1px 0;
   color: #fff;
   text-align: center;
   text-decoration: none;
@@ -121,13 +121,22 @@ button,
   font-size: 13px;
   font-weight: bold;
   line-height: 1;
-  border: 1px solid #7E9BC7;
-  border: 1px solid rgba(0,0,0,.1);
+  border: 1px solid #7E9BC7; /* TODO */
+  border: 1px solid rgba(0,0,0,.05);
   text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-  -moz-box-shadow:    inset 0 20px 20px rgba(255,255,255,0.3);
-  -webkit-box-shadow: inset 0 20px 20px rgba(255,255,255,0.3);
+  background: #1E52A1; /* TODO */
+  background: -moz-linear-gradient(#6084BC 0%, #436EB0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6084BC), color-stop(100%, #436EB0));
 }
-button:hover , input[type=submit]:hover , submit:hover , .button:hover   { background-color: #376EBF; color: #fff;text-shadow: 0 -1px 1px rgba(0,0,0,0.4);}
+button:hover , input[type=submit]:hover , submit:hover , .button:hover   {
+  color: #fff;
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.4);
+  border: 1px solid #7E9BC7; /* TODO */
+  border: 1px solid rgba(255,255,255,.1);
+  background-color: #376EBF; /* TODO */
+  background: -moz-linear-gradient(#436EB0 0%, #6084BC 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #436EB0), color-stop(100%, #6084BC));
+}
 button:active, input[type=submit]:active, submit:active, .button:active  { top: 1px; }
 button:visited, input[type=submit]:visited, submit:visited, .button:visited, .button:visited { background-color: #1E52A1; }
 button.large, input[type=submit].large, submit.large, .button.large {
