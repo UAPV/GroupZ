@@ -44,14 +44,16 @@ class gzActions extends sfActions
    */
   public function sendEmail ($email, $partial, $vars = null)
   {
-    $body = $this->getPartial ($partial, $vars);
+    $body = $this->getPartial ($partial, $vars).$this->getPartial ('global/email_signature');
 
     $message = $this->getMailer ()->compose (
       'groupz@univ-avignon.fr', // TODO
       $email,
       '[Groupz] '.get_slot ('email_subject'),
-      $body.$this->getPartial ('global/email_signature')
-    )->setContentType ("text/html");
+      $body
+    )
+    ->setContentType ("text/html")
+    ->addPart (@strip_tags ($body), 'text/plain');
 
     $this->getMailer()->send ($message);
   }
