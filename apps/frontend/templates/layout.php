@@ -18,6 +18,8 @@
       </div>
       <?php include_partial('global/breadcrumb', array ('path' => get_slot ('breadcrumb', array()))) ?>
       <div class="uapv_content">
+        <?php echo get_partial ('global/flash_messages') ?>
+
         <?php echo $sf_content ?>
       </div>
       <div class="uapv_footer">

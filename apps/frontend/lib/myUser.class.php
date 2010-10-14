@@ -34,13 +34,6 @@ class myUser extends uapvBasicSecurityUser
     return $user['Firstname'].' '.$user['Lastname'];
   }
 
-  /**
-   * @return User
-   */
-  public function getUserObject ()
-  {
-    return UserQuery::create ()->findPk ($this->getId());
-  }
 
   public function configure ()
   {
@@ -58,8 +51,41 @@ class myUser extends uapvBasicSecurityUser
       $this->addCredential('trusted');
   }
 
+  /**
+   * @return User
+   */
+  public function getUserObject ()
+  {
+    return UserQuery::create ()->findPk ($this->getId());
+  }
+
+
   public function setUserObject (User $user)
   {
     $this->setAttribute ('user', $user->toArray ());
+  }
+
+  /**
+   * Sets a flash notice that will be passed to the very next action.
+   *
+   * @param  $message
+   * @param bool $persist true if the flash have to persist for the following request (true by default)
+   * @return void
+   */
+  public function setFlashNotice ($message, $persist = true)
+  {
+    $this->setFlash ('notice', $message);
+  }
+
+  /**
+   * Sets a flash error that will be passed to the very next action.
+   *
+   * @param  $message
+   * @param bool $persist true if the flash have to persist for the following request (true by default)
+   * @return void
+   */
+  public function setFlashError ($message, $persist = true)
+  {
+    $this->setFlash ('error', $message);
   }
 }

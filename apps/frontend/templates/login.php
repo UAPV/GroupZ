@@ -10,6 +10,8 @@
   </head>
   <body>
     <div id="login_page">
+      <?php echo get_partial ('global/flash_messages') ?>
+
       <?php echo $sf_content ?>
     </div>
     <div class="uapv_footnote">
