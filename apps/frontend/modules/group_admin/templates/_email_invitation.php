@@ -10,7 +10,7 @@
 <p><b><?php echo __('Group description') ?></b> :</p>
 
 <p style="background: #FBF8EB; border: 1px solid #EFEBDD; padding: 20px;">
-  <?php echo $invitation->getGroup ()->getDescription () ?>
+  <?php echo nl2br ($invitation->getGroup ()->getDescription ()) ?>
 </p>
 
 <?php $acceptURL = url_for ('@invitation_accept?invitation='.$invitation->getHash(), true); ?>

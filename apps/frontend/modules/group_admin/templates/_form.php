@@ -183,7 +183,7 @@
         }
 
         // Invitation handlers
-        $('.invitation_pending a, a.resend_group_invitations').click (function (e) {
+        $('.invitation_pending a, a#resend_group_invitations').click (function (e) {
           e.preventDefault();
           $.get ($(this).attr('href'), function (data) {
             if (data.status && data.status == 'success')
@@ -191,6 +191,7 @@
             else
               alert (<?php echo json_encode (_('Error while sending invitation.')) ?>);
           });
+          return false;
         });
 
       </script>

@@ -45,7 +45,7 @@ class invitationActions extends gzActions
     $invitation = InvitationQuery::create ()
       ->joinWith ('Invitation.User')
       ->joinWith ('Invitation.Group')
-      ->findOneByHash ($this->getParamater ('invitation'));
+      ->findOneByHash ($request->getParamater ('invitation'));
     
     $this->forward404Unless ($invitation !== null);
     
@@ -60,7 +60,7 @@ class invitationActions extends gzActions
    */
   protected function getGroup (sfWebRequest $request)
   {
-    $group = GroupQuery::create ()->findPk ($this->getParamater ('group_name'));
+    $group = GroupQuery::create ()->findOneByName ($request->getParameter ('group_name'));
     $this->forward404Unless ($group !== null);
     return $group;
   }
@@ -73,7 +73,7 @@ class invitationActions extends gzActions
    */
   protected function getRequestedUser (sfWebRequest $request)
   {
-    $user = UserQuery::create ()->findPk ($this->getParamater ('user'));
+    $user = UserQuery::create ()->findPk ($request->getParameter ('user'));
     $this->forward404Unless ($user !== null);
     return $user;
   }
@@ -90,14 +90,13 @@ class invitationActions extends gzActions
     if ($group->getCreatedBy() != $this->getUser()->getId())
       $this->forwardToSecureAction();
 
-    $requestedUser = $this->getRequestedUser($request);
     $invitations = InvitationQuery::create ()
       ->filterByGroup($group)
       ->find();
 
     $this->resendInvitations($invitations);
 
-    $this->returnJSON (array (
+    return $this->returnJSON (array (
       'status' => 'success',
       'response' => __('Invitations sent') // TODO load helper ?
     ));
@@ -123,7 +122,7 @@ class invitationActions extends gzActions
 
     $this->resendInvitations($invitations);
 
-    $this->returnJSON (array (
+    return $this->returnJSON (array (
       'status' => 'success',
       'response' => __('Invitation sent') // TODO load helper ?
     ));
@@ -137,7 +136,7 @@ class invitationActions extends gzActions
   {
     foreach ($invitations as $invitation)
     {
-      // TODO
+      $this->sendEmail($invitation->getUser()->getEmail(), 'group_admin/email_invitation', array ('invitation' => $invitation));
     }
   }
 
