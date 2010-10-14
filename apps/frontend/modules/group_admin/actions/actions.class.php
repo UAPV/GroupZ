@@ -70,7 +70,7 @@ class group_adminActions extends gzActions
       {
         try
         {
-          $this->sendEmail($invitation->getUser()->getEmail(), 'email_invitation', array ('invitation' => $invitation));
+          $this->sendEmail ($invitation->getUser(), 'email_invitation', array ('invitation' => $invitation));
         }
         catch (Exception $e)
         {

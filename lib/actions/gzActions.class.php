@@ -36,24 +36,26 @@ class gzActions extends sfActions
   /**
    * Send an email using a partial as html template
    *
-   * @param string $email     User email
+   * @param User   $user      User data
    * @param string $partial   Partial to render
-   * @param array  $vars      Vars to pass to the template (Current action vars by default)
+   * @param array  $vars      Vars to pass to the template
    *
    * @return void
    */
-  public function sendEmail ($email, $partial, $vars = null)
+  public function sendEmail (User $user, $partial, $vars = array())
   {
+    $vars = array_merge (array ('recipient' => $user), $vars);
+
     $body = $this->getPartial ($partial, $vars).$this->getPartial ('global/email_signature');
 
     $message = $this->getMailer ()->compose (
       'groupz@univ-avignon.fr', // TODO
-      $email,
-      '[Groupz] '.get_slot ('email_subject'),
+      $user->getEmail(),
+      '[Groupz] '.html_entity_decode (get_slot ('email_subject'), ENT_QUOTES),
       $body
     )
     ->setContentType ("text/html")
-    ->addPart (@strip_tags ($body), 'text/plain');
+    ->addPart (html_entity_decode (@strip_tags ($body), ENT_QUOTES), 'text/plain');
 
     $this->getMailer()->send ($message);
   }

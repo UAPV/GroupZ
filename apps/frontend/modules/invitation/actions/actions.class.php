@@ -18,6 +18,8 @@ class invitationActions extends gzActions
     $group->addUser ($user);
     $invitation->delete();
 
+    $this->getUser()->setFlashNotice (__('You have been added to the group. Welcome !'), false);
+
     if ($user->isGuest () && $user->getPassword() === null)
     {
       $this->getUser ()->addCredentials ('guest');
@@ -31,7 +33,12 @@ class invitationActions extends gzActions
   public function executeDecline (sfWebRequest $request)
   {
     $invitation = $this->getInvitation ($request);
-    $invitation->delete ();
+
+    $this->sendEmail ($invitation->getGroup()->getOwner(), 'email_decline', array ('invitation' => $invitation));
+
+    // debug $invitation->delete ();
+
+    $this->getUser()->setFlashNotice (__('You have been removed from the group.'), false);
   }
 
   /**
@@ -45,7 +52,7 @@ class invitationActions extends gzActions
     $invitation = InvitationQuery::create ()
       ->joinWith ('Invitation.User')
       ->joinWith ('Invitation.Group')
-      ->findOneByHash ($request->getParamater ('invitation'));
+      ->findOneByHash ($request->getParameter ('invitation'));
     
     $this->forward404Unless ($invitation !== null);
     
@@ -136,7 +143,7 @@ class invitationActions extends gzActions
   {
     foreach ($invitations as $invitation)
     {
-      $this->sendEmail($invitation->getUser()->getEmail(), 'group_admin/email_invitation', array ('invitation' => $invitation));
+      $this->sendEmail($invitation->getUser(), 'group_admin/email_invitation', array ('invitation' => $invitation));
     }
   }
 
