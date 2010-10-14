@@ -59,4 +59,14 @@ class gzActions extends sfActions
 
     $this->getMailer()->send ($message);
   }
+
+  /**
+   * Load the i18n helper in order to be able to use it in the controller
+   *
+   * @return void
+   */
+  public function loadI18nHelper ()
+  {
+    $this->getContext()->getConfiguration()->loadHelpers('I18N');
+  }
 }

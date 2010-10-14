@@ -9,6 +9,12 @@
  */
 class invitationActions extends gzActions
 {
+  /**
+   * Handle the accept invitation request
+   *
+   * @param sfWebRequest $request
+   * @return void
+   */
   public function executeAccept (sfWebRequest $request)
   {
     $invitation = $this->getInvitation ($request);
@@ -16,73 +22,35 @@ class invitationActions extends gzActions
     $group = $invitation->getGroup();
 
     $group->addUser ($user);
-    $invitation->delete();
+    //$invitation->delete();
 
-    $this->getUser()->setFlashNotice (__('You have been added to the group. Welcome !'), false);
+    $this->loadI18nHelper ();
+    $this->getUser ()->setFlashNotice (__('You have been added to the group. Welcome !'), false);
+    $this->getUser ()->signInDbUser ($user);
 
+    // if the user doesn't have password yet, we let him choose one
     if ($user->isGuest () && $user->getPassword() === null)
-    {
-      $this->getUser ()->addCredentials ('guest');
-      $this->getUser ()->setUserObject ($user);
       $this->redirect ('@user_edit?id='.$user->getId());
-    }
     else
-      $this->redirect ('@group_show?name'.$group->getName());
+      $this->redirect ('@group_show?name='.$group->getName());
   }
 
+  /**
+   * Handle the decline invitation request
+   *
+   * @param sfWebRequest $request
+   * @return void
+   */
   public function executeDecline (sfWebRequest $request)
   {
     $invitation = $this->getInvitation ($request);
 
     $this->sendEmail ($invitation->getGroup()->getOwner(), 'email_decline', array ('invitation' => $invitation));
 
-    // debug $invitation->delete ();
+    $invitation->delete ();
 
+    $this->loadI18nHelper ();
     $this->getUser()->setFlashNotice (__('You have been removed from the group.'), false);
-  }
-
-  /**
-   * Get requested invitation
-   *
-   * @param sfWebRequest $request
-   * @return Invitation
-   */
-  protected function getInvitation (sfWebRequest $request)
-  {
-    $invitation = InvitationQuery::create ()
-      ->joinWith ('Invitation.User')
-      ->joinWith ('Invitation.Group')
-      ->findOneByHash ($request->getParameter ('invitation'));
-    
-    $this->forward404Unless ($invitation !== null);
-    
-    return $invitation;
-  }
-
-  /**
-   * Get requested group
-   *
-   * @param sfWebRequest $request
-   * @return Group
-   */
-  protected function getGroup (sfWebRequest $request)
-  {
-    $group = GroupQuery::create ()->findOneByName ($request->getParameter ('group_name'));
-    $this->forward404Unless ($group !== null);
-    return $group;
-  }
-
-  /**
-   * Get requested user
-   *
-   * @param sfWebRequest $request
-   * @return User
-   */
-  protected function getRequestedUser (sfWebRequest $request)
-  {
-    $user = UserQuery::create ()->findPk ($request->getParameter ('user'));
-    $this->forward404Unless ($user !== null);
-    return $user;
   }
 
   /**
@@ -133,6 +101,50 @@ class invitationActions extends gzActions
       'status' => 'success',
       'response' => __('Invitation sent') // TODO load helper ?
     ));
+  }
+
+  /**
+   * Get requested invitation
+   *
+   * @param sfWebRequest $request
+   * @return Invitation
+   */
+  protected function getInvitation (sfWebRequest $request)
+  {
+    $invitation = InvitationQuery::create ()
+      ->joinWith ('Invitation.User')
+      ->joinWith ('Invitation.Group')
+      ->findOneByHash ($request->getParameter ('invitation'));
+    
+    $this->forward404Unless ($invitation !== null);
+    
+    return $invitation;
+  }
+
+  /**
+   * Get requested group
+   *
+   * @param sfWebRequest $request
+   * @return Group
+   */
+  protected function getGroup (sfWebRequest $request)
+  {
+    $group = GroupQuery::create ()->findOneByName ($request->getParameter ('group_name'));
+    $this->forward404Unless ($group !== null);
+    return $group;
+  }
+
+  /**
+   * Get requested user
+   *
+   * @param sfWebRequest $request
+   * @return User
+   */
+  protected function getRequestedUser (sfWebRequest $request)
+  {
+    $user = UserQuery::create ()->findPk ($request->getParameter ('user'));
+    $this->forward404Unless ($user !== null);
+    return $user;
   }
 
   /**
