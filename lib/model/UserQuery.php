@@ -40,5 +40,13 @@ class UserQuery extends BaseUserQuery {
     return $this->orderByLastname()
                 ->orderByFirstname();
   }
-  
+
+  public function findByEmailAndPassword ($email, $password)
+  {
+    return $this
+      ->filterByEmail (strtolower ($email))
+      ->where ('User.Password = SHA1(CONCAT(User.Salt, ?))', $password)
+      ->findOne ();
+  }
+
 } // UserQuery

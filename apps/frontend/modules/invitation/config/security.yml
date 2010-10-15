@@ -1,0 +1,5 @@
+accept:
+  is_secure: false
+
+decline:
+  is_secure: false

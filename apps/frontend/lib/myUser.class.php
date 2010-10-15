@@ -31,6 +31,7 @@ class myUser extends uapvBasicSecurityUser
    */
   public function signInDbUser (User $user)
   {
+    $this->setAuthenticated(true);
     $this->setUserObject ($user);
 
     // configure credentials

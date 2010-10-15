@@ -6,6 +6,20 @@ homepage:
   url:   /
   param: { module: group, action: index }
 
+# Edit form account
+account_edit:
+  url: account
+  class: sfRequestRoute
+  param: { module: account, action: edit }
+  requirements: { sf_method: get }
+
+# Update account
+account_update:
+  url: account
+  class: sfRequestRoute
+  param: { module: account, action: update }
+  requirements: { sf_method: put }
+
 # Accept invitation
 invitation_accept:
   url: /invitation/accept/:invitation

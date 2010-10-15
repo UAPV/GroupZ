@@ -8,11 +8,28 @@
  * @subpackage group
  * @author     Arnaud Didry <arnaud@didry.info>
  */
-class authActions extends sfActions
+class authActions extends gzActions
 {
   public function executeLogin (sfWebRequest $request)
   {
-    // TODO
+    if ($request->isMethod ('post'))
+    {
+      $user = UserQuery::create ()->findByEmailAndPassword (
+        $request->getParameter ('email'),
+        $request->getParameter ('password'));
+
+      $this->loadI18nHelper ();
+      if ($user === null)
+      {
+        $this->getUser()->setFlashError (__('Invalid email or password'));
+      }
+      else
+      {
+        $this->getUser ()->signInDbUser ($user);
+        $this->redirect ('@homepage');
+      }
+    }
+
   }
 
 }

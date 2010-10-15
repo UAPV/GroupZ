@@ -84,4 +84,42 @@ class User extends BaseUser {
       ->count () > 0);
   }
 
+  /**
+   * Get the saved salt or generate a new one.
+   *
+   * @return string
+   */
+  public function getSalt ()
+  {
+    $salt = parent::getSalt ();
+
+    if ($salt == '')
+    {
+      $salt = sha1 ($this->getEmail ().time ().mt_rand ());
+      $this->setSalt ($salt);
+    }
+
+    return $salt;
+  }
+
+  /**
+   * @return string
+   */
+  public function hashPassword ($password)
+  {
+    return sha1 ($this->getSalt ().$password);
+  }
+
+  /**
+   * Hash the password before storing it
+   *
+   * @param  $password
+   * @return void
+   */
+  public function setPassword ($password)
+  {
+    parent::setPassword ($this->hashPassword ($password));
+  }
+
+
 } // User

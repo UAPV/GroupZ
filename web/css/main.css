@@ -248,6 +248,7 @@ input.password ,
 input.username ,
 #login_page .login_block input.username ,
 #login_page .login_block input.password {
+    background-color: white;
     padding-left: 21px;
     background-repeat: no-repeat;
     background-position: 3px center;
@@ -316,8 +317,15 @@ ul#breadcrumb li:last-child {
 		background: none;
 }
 
+/* Edit account */
+
+#edit_account h2 span.email {
+  color: #cbc7c0;
+}
+
 /* Shinny box */
 
+fieldset,
 .form_actions ,
 .group_list li.group ,
 .group_members .users li {

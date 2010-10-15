@@ -30,7 +30,7 @@ class invitationActions extends gzActions
 
     // if the user doesn't have password yet, we let him choose one
     if ($user->isGuest () && $user->getPassword() === null)
-      $this->redirect ('@user_edit?id='.$user->getId());
+      $this->redirect ('@account_edit');
     else
       $this->redirect ('@group_show?name='.$group->getName());
   }
