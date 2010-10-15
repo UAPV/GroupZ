@@ -37,8 +37,6 @@ class Group extends BaseGroup {
   {
     // TODO Add the user to the mailing list !
 
-    // TODO send confirmation email !
-
     return parent::addUser($user);
   }
 

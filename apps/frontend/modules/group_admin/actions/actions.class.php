@@ -62,8 +62,10 @@ class group_adminActions extends gzActions
     if ($form->isValid())
     {
       $Group = $form->save();
-      
-      // TODO set flash message
+
+      $this->loadI18nHelper();
+      $flashMessage = __('Group saved').'. ';
+      $emailErrors = array ();
 
       $invitations = $form->getInvitations ();
       foreach ($invitations as $invitation)
@@ -76,14 +78,19 @@ class group_adminActions extends gzActions
         {
           // Stop exception in order to be able to send the other invitations left
           // TODO log this !
+
+          $emailErrors [] = $invitation->getUser ()->getEmail ();
         }
       }
 
       if (count ($invitations) > 0)
-      {
-        // TODO flash += "notifs sent"
-      }
+        $flashMessage .= format_number_choice('[1]One invitation were sent|(1,+Inf]%count% invitations were sent.',
+          array ('%count%' => count ($invitations)), count ($invitations));
 
+      if (count ($emailErrors) > 0)
+        $this->getUser ()->setFlashError (__('Couldn\'t send invitations to %emails%', implode(', ', $emailErrors)));
+
+      $this->getUser ()->setFlashNotice ($flashMessage);
       $this->redirect('@group_admin_edit?name='.$Group->getName());
     }
   }

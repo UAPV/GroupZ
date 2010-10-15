@@ -22,17 +22,26 @@ class invitationActions extends gzActions
     $group = $invitation->getGroup();
 
     $group->addUser ($user);
-    //$invitation->delete();
+    $group->save ();
+    $invitation->delete();
+
+    // TODO send confirmation email
+    // TODO send confirmation to group owner ?
 
     $this->loadI18nHelper ();
-    $this->getUser ()->setFlashNotice (__('You have been added to the group. Welcome !'), false);
     $this->getUser ()->signInDbUser ($user);
 
     // if the user doesn't have password yet, we let him choose one
     if ($user->isGuest () && $user->getPassword() === null)
+    {
+      $this->getUser ()->setFlashNotice (__('You have been added to the group. Welcome ! Please enter your personnal details and choose your password.'));
       $this->redirect ('@account_edit');
+    }
     else
+    {
+      $this->getUser ()->setFlashNotice (__('You have been added to the group. Welcome !'));
       $this->redirect ('@group_show?name='.$group->getName());
+    }
   }
 
   /**

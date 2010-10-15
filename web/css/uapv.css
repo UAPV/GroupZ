@@ -157,3 +157,30 @@ button.large, input[type=submit].large, submit.large, .button.large {
     padding: 0.7em 1em ;
     margin: 1.6em 0 0.6em 0;
 }
+
+/* Flash Messages */
+
+.flash_notice,
+.flash_error {
+  padding: 1em;
+  margin: 1em;
+  font-size: 1.2em;
+  -moz-border-radius:    4px;
+  -webkit-border-radius: 4px;
+  border-radius:         4px;
+}
+.flash_notice {
+  color: #5F5D4C;
+  background: #efeaba;
+  border: 1px solid #F5F1C9;
+  background: -moz-linear-gradient(#fefad2 0%, #e99191 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFFDE6), color-stop(100%, #fefad2));
+}
+.flash_error {
+  /* #FFFDE6 */
+  color: #553535;
+  background: #ffa0a0;
+  border: 1px solid #D28282;
+  background: -moz-linear-gradient(#ffa0a0 0%, #e99191 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffa0a0), color-stop(100%, #e99191));
+}

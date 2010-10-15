@@ -1,3 +1,4 @@
+
 <?php if ($sf_user->hasFlash('notice')): ?>
   <div class="flash_notice">
     <?php echo $sf_user->getFlash('notice') ?>
