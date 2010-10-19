@@ -5,7 +5,9 @@ lib/model/map/*
 lib/form/base/*
 lib/filter/base/*
 data/sql/*
+data/fixtures/*
 nbproject
 .idea
-plugins//sfPropel15Plugin
-plugins//sfPropelActAsBlameableBehaviorPlugin
+plugins/.*
+plugins/sfPropel15Plugin
+plugins/sfPropelActAsBlameableBehaviorPlugin
