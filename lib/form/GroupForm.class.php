@@ -50,6 +50,8 @@ class GroupForm extends BaseGroupForm
   {
     $group = $this->getObject (); /* @var $group Group */
 
+    // TODO uniq($users)
+
     $membersIds = $this->getSavedMemberIds ();
 
     if (! is_array($users))

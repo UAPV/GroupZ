@@ -7,7 +7,7 @@
 .uapv_header {
   background: #494846;
   background: -moz-linear-gradient(#DCD9D5 0%, #D1CDC8 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCD9D5), color-stop(100%, #D1CDC8));
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCD9D5), color-stop(100%, #BEB8AF));
 }
 
 .uapv_header h1 {
@@ -60,11 +60,23 @@ form label {
 .group_form {
 
 }
-.group_form #name span {
-    font-size: larger;
+.group_form .group_attributes {
+  float: left;
+  width: 46%;
 }
-.group_form #title input {
-    width: 90%;
+.group_form .group_members {
+  float: right;
+  width: 47%;
+  padding: 0 0 2em 2em;
+  -moz-border-radius:     5px;
+  -webkit-border-radius:  5px;
+  border-radius:          5px;
+  border-left: 5px solid rgba(0,0,0,.04);
+}
+.group_form .name span {
+}
+.group_form .title input {
+    width: 96%;
 }
 .group_form #description textarea {
     width: 98%;
@@ -72,21 +84,20 @@ form label {
 .group_form #is_public label {
     display: inline;
 }
-
-.group_members {
-    position: relative;
-    padding-bottom: 4em;
-    padding-right: 26.5em;
-}
 .group_members #new_member {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-left: 1px solid #D4D0C9;
-    padding: 0 2em 1em 2em;
+  background: -moz-linear-gradient(#F5F5F5 30%, #EEE 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #F5F5F5), color-stop(100%, #EEE));
+  border-color: #E2E2E2;
+}
+.group_members #new_member label {
+    display: inline;
+  padding-right: 1em;
 }
 .group_members #new_member input#autocomplete_user {
     width: 200px;
+}
+.group_members #new_member input#add_user {
+  float: right;
 }
 
 .ui-autocomplete a .user_email {
@@ -99,9 +110,11 @@ form label {
 }
 
 .group_members .users {
-  margin: 0;  
+  margin: 0;
 }
-
+.group_members .users li {
+  min-height: 2.1em;
+}
 .group_members .users li .invitation_pending a,
 .group_members .users li .user_delete {
   position: absolute;
@@ -118,11 +131,14 @@ form label {
   padding-right: 28px;
   text-indent: 0;
   width: auto;
+  font-size: 0.7em;
   background: transparent url(../images/icons/mail-resend.png) no-repeat right center;
 }
 #resend_group_invitations {
-  background-position: left bottom;
-  padding: 2em 0 0.5em 28px;
+  text-align: right;
+  background-position: right bottom;
+  padding: 1em 28px 1em 0;
+  font-size: 0.8em;
   display: block;
 }
 .group_members .users li .invitation_pending a {
@@ -286,8 +302,8 @@ ul#breadcrumb {
   margin: 0;
   padding: 0.6em 2em;
   background: #B7B4B0;
-  background: -moz-linear-gradient(#B7B4B0 70%, #A7A49F 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, #B7B4B0), color-stop(100%, #A7A49F));
+  background: -moz-linear-gradient(#A39D94 70%, #898379 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, #A39D94), color-stop(100%, #99948D));
   border-bottom: 1px solid #918D89;
 }
 ul#breadcrumb ,

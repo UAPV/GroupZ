@@ -2,10 +2,11 @@
 /* Layout */
 
 html, body {
-    font-family: Arial;
-    background: #F2EDE7;
-    height: 100%;
-    color: #38332C;
+  font-family: Arial;
+  font-size: 0.95em;
+  background: #F2EDE7;
+  height: 100%;
+  color: #38332C;
 }
 
 .uapv_header ,
@@ -59,6 +60,14 @@ body.large .uapv_footnote {
     color: #8A7E6B;
 }
 
+/* Util */
+
+.clearboth {
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
 
 /* Text */
 
@@ -80,12 +89,15 @@ h2 {
   font-size: 1.8em;
   font-weight: bold;
   letter-spacing: -1px;
+  padding: 1em 0 0.7em 0;
 }
+
 /* Forms */
 
 select ,
 textarea ,
 input {
+  font-family: Arial;
   padding: 0.4em;
   border-width: 1px;
   border-style: solid;
@@ -109,6 +121,7 @@ fieldset {
 }
 
 form label {
+  padding: 0.7em 0 0 0;
 }
 
 .button,

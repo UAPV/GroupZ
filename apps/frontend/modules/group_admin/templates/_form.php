@@ -43,13 +43,13 @@
     });
   </script>
 
-  <ul class="fields on-2 columns">
-    <li class="column" id="title">
+  <ul class="group_attributes">
+    <li class="title">
       <?php echo $form['title']->renderLabel() ?>
       <?php echo $form['title']->render() ?>
       <?php echo $form['title']->renderError() ?>
     </li>
-    <li class="column" id="name">
+    <li class="name">
       <?php if ($form->getGroup()->isNew ()): ?>
         <?php echo $form['name']->renderLabel() ?>
         <?php echo $form['name']->render() ?>
@@ -62,13 +62,13 @@
         <div><?php echo $form->getGroup ()->getEmail (); ?></div>
       <?php endif ?>
     </li>
-    <li id="description" class="column span-2">
+    <li id="description">
       <?php echo $form['description']->renderLabel() ?>
       <?php echo $form['description']->render() ?>
       <?php echo $form['description']->renderError() ?>
     </li>
-    <li id="is_public" class="column span-2">
-      <?php echo $form['is_public']->render(array ('title'=>_('Wheter the group will be visible and open to subscription to others people'))) ?>
+    <li id="is_public">
+      <?php echo $form['is_public']->render(array ('title'=>_('Whether the group will be visible and open to subscription to others people'))) ?>
       <?php echo $form['is_public']->renderLabel() ?>
     </li>
   </ul>
@@ -76,10 +76,18 @@
   <div class="group_members">
     <label><?php echo _('Group members') ?></label>
     <ul class="users">
+        <li id="new_member"">
+          <label for="autocomplete_user"><?php echo _('Add user') ?></label>
+          <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email') ?>" title="<?php
+            echo _('Type a name or email of your contact, then select him in the list. ') ?>"/>
+          <input type="submit" id="add_user" value="<?php  echo _('Add') ?>" />
+        </li>
       <?php foreach ($form->getMembers () as $user): ?>
         <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>>
           <input type="hidden" name="group[users][]" value="<?php echo $user->getId() ?>" />
-          <span class="user_fullname"><?php echo $user->getFullname (); ?></span>
+          <span class="user_fullname">
+            <?php echo (trim ($user->getFullname ()) == '' ? __('Guest user') : $user->getFullname ()) ?>
+          </span>
           <?php if ($user->hasInvitationForGroup ($form->getGroup ())): ?>
             <span class="invitation_pending">
               <?php echo link_to (_('Pending invitations'), '@invitation_user?group_name='.$form->getGroup()->getName().'&user='.$user->getId())?>
@@ -90,24 +98,22 @@
         </li>
       <?php endforeach; ?>
     </ul>
-    <?php if ($form->getGroup ()->hasPendingInvitations ()): ?>
-      <?php echo link_to (_('Resend all pending invitations'),
-              '@invitation_group?group_name='.$form->getGroup()->getName(),
-               array ('id' => 'resend_group_invitations')); ?>
-    <?php endif ?>
     
-    <div id="new_member"">
-      <label for="autocomplete_user"><?php echo _('Add user') ?></label>
-      <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email') ?>" title="<?php
-        echo _('Type a name or email of your contact, then select him in the list. ') ?>"/>
-      <input type="submit" id="add_user" value="<?php  echo _('Add') ?>" />
+    <div>
 
+      <?php if ($form->getGroup ()->hasPendingInvitations ()): ?>
+        <?php echo link_to (_('Resend all pending invitations'),
+                '@invitation_group?group_name='.$form->getGroup()->getName(),
+                 array ('id' => 'resend_group_invitations')); ?>
+      <?php endif ?>
+    
       <?php echo javascript_include_tag ('jquery-ui.js') ?>
       <script type="text/javascript">
 
         // Initialize the user autocompleter
         $('#autocomplete_user').autocomplete ({
           source: "<?php echo url_for('user/autocomplete') ?>",
+          delay: 150,
           minLength: 2,
                 select: selectUser
         })
@@ -199,6 +205,8 @@
     </div>
   </div>
 
+  <div class="clearboth"></div>
+
   <div class="form_actions">
     <input type="submit" value="<?php echo _('Save') ?>" />&nbsp;&nbsp;
     <?php if (!$form->getGroup()->isNew()): ?>
@@ -208,7 +216,3 @@
   </div>
 
 </form>
-
-<div id="dialog-modal" title="<?php echo _('Add a new user') ?>" style="display: none;">
-	<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>
-</div>
