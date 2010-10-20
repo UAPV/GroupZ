@@ -1,12 +1,10 @@
 <?php
 
 /**
- * gzDebugEventPlugin configuration.
- * 
- * @package     gzDebugEventPlugin
+ * Sample GroupZ plugin
+ *
  * @subpackage  config
  * @author      Arnaud Didry <arnaud@didry.info>
- * @version     SVN: $Id: PluginConfiguration.class.php 17207 2009-04-10 15:36:26Z Kris.Wallsmith $
  */
 class gzDebugEventPluginConfiguration extends gzPluginConfiguration
 {
@@ -17,5 +15,6 @@ class gzDebugEventPluginConfiguration extends gzPluginConfiguration
    */
   public function initialize()
   {
+    $this->connectGroupChangeEvents(new gzDebugGroupChangeEventHandler ());
   }
 }

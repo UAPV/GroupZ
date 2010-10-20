@@ -6,7 +6,6 @@
  * @package     gzDebugEventPlugin
  * @subpackage  config
  * @author      Arnaud Didry <arnaud@didry.info>
- * @version     SVN: $Id: PluginConfiguration.class.php 17207 2009-04-10 15:36:26Z Kris.Wallsmith $
  */
 class gzPluginConfiguration extends sfPluginConfiguration
 {

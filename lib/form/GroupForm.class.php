@@ -69,15 +69,17 @@ class GroupForm extends BaseGroupForm
     $deletedUserIds = array_diff ($membersIds, $users);
     if (count ($deletedUserIds))
     {
-      GroupMemberQuery::create ()
+      foreach (GroupMemberQuery::create ()
         ->filterByGroup ($group)
         ->where ('GroupMember.UserId IN ?', $deletedUserIds)
-        ->delete();
+        ->find() as $member)
+        $member->delete (); // Implicitly call the gz_member.leave event
 
-      InvitationQuery::create ()
+      foreach (InvitationQuery::create ()
         ->filterByGroup ($group)
         ->where ('Invitation.UserId IN ?', $deletedUserIds)
-        ->delete();
+        ->find() as $member)
+        $member->delete (); // Implicitly call the gz_member.leave event
     }
   }
 
@@ -114,7 +116,6 @@ class GroupForm extends BaseGroupForm
     $membersIds = array ();
     foreach ($members as $member)
       $membersIds [] = $member->getId ();
-
     return $membersIds;
   }
 

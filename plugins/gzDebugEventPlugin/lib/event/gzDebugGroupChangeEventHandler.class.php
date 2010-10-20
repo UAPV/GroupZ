@@ -6,9 +6,9 @@
 class gzDebugGroupChangeEventHandler extends gzGroupChangeEventHandler
 {
 
-  public function handleGroupNewEvent (sfEvent $event)
+  public function handleGroupCreateEvent (sfEvent $event)
   {
-    $group = $event['group'];
+    $group = $event->getSubject();
     $this->log (<<<YAML
   event: new_group
   group: "{$group->getName()}",
@@ -19,7 +19,7 @@ YAML
 
   public function handleGroupDeleteEvent (sfEvent $event)
   {
-    $group = $event['group'];
+    $group = $event->getSubject();
     $this->log (<<<YAML
   event: delete_group
   group: "{$group->getName()}"
@@ -29,9 +29,7 @@ YAML
 
   public function handleGroupMemberJoinEvent  (sfEvent $event)
   {
-    $groupMember = $event['group_member'];
-    $group = $groupMember->getGroup ();
-
+    $groupMember = $event->getSubject();
     $this->log (<<<YAML
   event: group_member_join
   group: "{$groupMember->getGroup ()->getName ()}"
@@ -42,9 +40,7 @@ YAML
 
   public function handleGroupMemberLeaveEvent (sfEvent $event)
   {
-    $groupMember = $event['group_member'];
-    $group = $groupMember->getGroup ();
-
+    $groupMember = $event->getSubject();
     $this->log (<<<YAML
   event: group_member_leave
   group: "{$groupMember->getGroup ()->getName ()}"
@@ -55,6 +51,6 @@ YAML
 
   protected function log ($message)
   {
-    file_put_contents (sfConfig::get ('sf_log_dir').'/gz_events.log', time().":\n".$message, FILE_APPEND);
+    file_put_contents (sfConfig::get ('sf_log_dir').'/gz_events.log', time().":\n$message\n", FILE_APPEND);
   }
 }

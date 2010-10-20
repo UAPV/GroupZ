@@ -24,4 +24,30 @@ class GroupMember extends BaseGroupMember {
     return $this->getGroupId().'-'.$this->getUserId();
   }
 
+	/**
+	 * Code to be run after inserting to database to notify the dispatcher
+	 * @param PropelPDO $con
+	 */
+	public function postInsert(PropelPDO $con = null)
+  {
+    // Add the user to the mailing list
+    $event = new sfEvent ($this, 'gz_member.join');
+    sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+    return parent::postInsert ($con);
+  }
+
+	/**
+	 * Code to be run before deleting from database to notify the dispatcher
+	 * @param PropelPDO $con
+	 */
+	public function preDelete(PropelPDO $con = null)
+  {
+    // Add the user to the mailing list
+    $event = new sfEvent ($this, 'gz_member.leave');
+    sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+    return parent::preDelete ($con);
+  }
+
 } // GroupMember

@@ -30,17 +30,6 @@ class Group extends BaseGroup {
   }
 
   /**
-   * @param  $user
-   * @return void
-   */
-  public function addUser ($user)
-  {
-    // TODO Add the user to the mailing list !
-
-    return parent::addUser($user);
-  }
-
-  /**
    * Create an invitation an send it.
    *
    * @param User $user
@@ -70,6 +59,35 @@ class Group extends BaseGroup {
     return (InvitationQuery::create ()
       ->filterByGroup($this)
       ->count() > 0);
+  }
+
+  /**
+   * Code to be run before inserting to database to notify the dispatcher
+   * @param PropelPDO $con
+   */
+  public function doSave(PropelPDO $con = null)
+  {
+    if ($this->isNew())
+    {
+      // Create the mailing list
+      $event = new sfEvent ($this, 'gz_group.create');
+      sfContext::getInstance()->getEventDispatcher()->notify($event);
+    }
+
+    parent::doSave ($con);
+  }
+
+  /**
+   * Code to be run before deleting from database to notify the dispatcher
+   * @param PropelPDO $con
+   */
+  public function postDelete(PropelPDO $con = null)
+  {
+    // Delete the mailing list
+    $event = new sfEvent ($this, 'gz_group.delete');
+    sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+    return parent::preInsert ($con);
   }
 
 } // Group
