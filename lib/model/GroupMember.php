@@ -31,7 +31,7 @@ class GroupMember extends BaseGroupMember {
   public function postInsert(PropelPDO $con = null)
   {
     // Add the user to the mailing list
-    sfApplicationConfiguration::getActive()->getEventDispatcher()->notify(
+    sfProjectConfiguration::getActive()->getEventDispatcher()->notify(
       new sfEvent ($this, 'gz.member.joined'));
 
     return parent::postInsert ($con);
@@ -44,7 +44,7 @@ class GroupMember extends BaseGroupMember {
   public function postDelete(PropelPDO $con = null)
   {
     // Add the user to the mailing list
-    sfApplicationConfiguration::getActive()->getEventDispatcher()->notify(
+    sfProjectConfiguration::getActive()->getEventDispatcher()->notify(
       new sfEvent ($this, 'gz.member.leaved'));
 
     return parent::postDelete ($con);

@@ -30,7 +30,7 @@ class Group extends BaseGroup {
   }
 
   /**
-   * Create an invitation an send it.
+   * Create an invitation
    *
    * @param User $user
    * @return Invitation
@@ -68,7 +68,7 @@ class Group extends BaseGroup {
   public function postInsert(PropelPDO $con = null)
   {
     // Insert the mailing list
-    sfApplicationConfiguration::getActive()->getEventDispatcher()->notify(
+    sfProjectConfiguration::getActive()->getEventDispatcher()->notify(
       new sfEvent ($this, 'gz.group.created'));
 
     return parent::postInsert ($con);
@@ -81,7 +81,7 @@ class Group extends BaseGroup {
   public function postDelete(PropelPDO $con = null)
   {
     // Delete the mailing list
-    sfApplicationConfiguration::getActive()->getEventDispatcher()->notify(
+    sfProjectConfiguration::getActive()->getEventDispatcher()->notify(
       new sfEvent ($this, 'gz.group.deleted'));
 
     return parent::postDelete ($con);
