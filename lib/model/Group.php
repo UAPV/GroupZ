@@ -62,32 +62,29 @@ class Group extends BaseGroup {
   }
 
   /**
-   * Code to be run before inserting to database to notify the dispatcher
+   * Code to be run after inserting in the database to notify the dispatcher
    * @param PropelPDO $con
    */
-  public function doSave(PropelPDO $con = null)
+  public function postInsert(PropelPDO $con = null)
   {
-    if ($this->isNew())
-    {
-      // Create the mailing list
-      $event = new sfEvent ($this, 'gz_group.create');
-      sfContext::getInstance()->getEventDispatcher()->notify($event);
-    }
+    // Insert the mailing list
+    sfApplicationConfiguration::getActive()->getEventDispatcher()->notify(
+      new sfEvent ($this, 'gz.group.created'));
 
-    parent::doSave ($con);
+    return parent::postInsert ($con);
   }
 
   /**
-   * Code to be run before deleting from database to notify the dispatcher
+   * Code to be run after deleting from database to notify the dispatcher
    * @param PropelPDO $con
    */
   public function postDelete(PropelPDO $con = null)
   {
     // Delete the mailing list
-    $event = new sfEvent ($this, 'gz_group.delete');
-    sfContext::getInstance()->getEventDispatcher()->notify($event);
+    sfApplicationConfiguration::getActive()->getEventDispatcher()->notify(
+      new sfEvent ($this, 'gz.group.deleted'));
 
-    return parent::preInsert ($con);
+    return parent::postDelete ($con);
   }
 
 } // Group

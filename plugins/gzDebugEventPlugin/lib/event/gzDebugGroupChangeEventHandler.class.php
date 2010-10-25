@@ -6,43 +6,43 @@
 class gzDebugGroupChangeEventHandler extends gzGroupChangeEventHandler
 {
 
-  public function handleGroupCreateEvent (sfEvent $event)
+  public function handleGroupCreatedEvent (sfEvent $event)
   {
     $group = $event->getSubject();
     $this->log (<<<YAML
-  event: new_group
+  event: created_group
   group: "{$group->getName()}",
   owner: "{$group->getOwner()->getEmail()}"
 YAML
     );
   }
 
-  public function handleGroupDeleteEvent (sfEvent $event)
+  public function handleGroupDeletedEvent (sfEvent $event)
   {
     $group = $event->getSubject();
     $this->log (<<<YAML
-  event: delete_group
+  event: deleted_group
   group: "{$group->getName()}"
 YAML
     );
   }
 
-  public function handleGroupMemberJoinEvent  (sfEvent $event)
+  public function handleGroupMemberJoinedEvent  (sfEvent $event)
   {
     $groupMember = $event->getSubject();
     $this->log (<<<YAML
-  event: group_member_join
+  event: group_member_joined
   group: "{$groupMember->getGroup ()->getName ()}"
   user: "{$groupMember->getUser ()->getEmail ()}"
 YAML
     );
   }
 
-  public function handleGroupMemberLeaveEvent (sfEvent $event)
+  public function handleGroupMemberLeavedEvent (sfEvent $event)
   {
     $groupMember = $event->getSubject();
     $this->log (<<<YAML
-  event: group_member_leave
+  event: group_member_leaved
   group: "{$groupMember->getGroup ()->getName ()}"
   user: "{$groupMember->getUser ()->getEmail ()}"
 YAML

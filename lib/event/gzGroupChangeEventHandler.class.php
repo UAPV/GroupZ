@@ -1,5 +1,11 @@
 <?php
 
+
+/**
+ * Abstract class to describe group change handlers
+ *
+ * Naming convention : http://msdn.microsoft.com/en-us/library/h0eyck3s(VS.71).aspx
+ */
 abstract class gzGroupChangeEventHandler
 {
 
@@ -11,23 +17,23 @@ abstract class gzGroupChangeEventHandler
    */
   public function setDispatcher (sfEventDispatcher $dispatcher)
   {
-    $dispatcher->connect ('gz_group.create',      array($this, 'handleGroupCreateEvent'));
-    $dispatcher->connect ('gz_group.delete',      array($this, 'handleGroupDeleteEvent'));
-    $dispatcher->connect ('gz_group.expire',      array($this, 'handleGroupExpireEvent'));
+    $dispatcher->connect ('gz.group.created',      array($this, 'handleGroupCreatedEvent'));
+    $dispatcher->connect ('gz.group.deleted',      array($this, 'handleGroupDeletedEvent'));
+    $dispatcher->connect ('gz.group.expired',      array($this, 'handleGroupExpiredEvent'));
 
-    $dispatcher->connect ('gz_member.join',       array($this, 'handleGroupMemberJoinEvent'));
-    $dispatcher->connect ('gz_member.leave',      array($this, 'handleGroupMemberLeaveEvent'));
-    $dispatcher->connect ('gz_member.invite',     array($this, 'handleGroupMemberInviteEvent'));
-    $dispatcher->connect ('gz_member.postulate',  array($this, 'handleGroupMemberPostulateEvent'));
+    $dispatcher->connect ('gz.member.joined',      array($this, 'handleGroupMemberJoinedEvent'));
+    $dispatcher->connect ('gz.member.leaved',      array($this, 'handleGroupMemberLeavedEvent'));
+    $dispatcher->connect ('gz.member.invited',     array($this, 'handleGroupMemberInvitedEvent'));
+    $dispatcher->connect ('gz.member.postulated',  array($this, 'handleGroupMemberPostulatedEvent'));
   }
 
-  abstract public function handleGroupCreateEvent (sfEvent $event);
-  abstract public function handleGroupDeleteEvent (sfEvent $event);
-           public function handleGroupExpireEvent (sfEvent $event) {}
+  abstract public function handleGroupCreatedEvent (sfEvent $event);
+  abstract public function handleGroupDeletedEvent (sfEvent $event);
+           public function handleGroupExpiredEvent (sfEvent $event) {}
 
-  abstract public function handleGroupMemberJoinEvent      (sfEvent $event);
-  abstract public function handleGroupMemberLeaveEvent     (sfEvent $event);
-           public function handleGroupMemberInviteEvent    (sfEvent $event) {}
-           public function handleGroupMemberPostulateEvent (sfEvent $event) {}
+  abstract public function handleGroupMemberJoinedEvent     (sfEvent $event);
+  abstract public function handleGroupMemberLeavedEvent     (sfEvent $event);
+           public function handleGroupMemberInvitedEvent    (sfEvent $event) {}
+           public function handleGroupMemberPostulatedEvent (sfEvent $event) {}
 
 }
