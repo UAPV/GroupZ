@@ -5,3 +5,7 @@ sfPropel15Plugin:
 sfPropelActAsBlameableBehaviorPlugin:
   repo: git://github.com/ArnaudD/sfPropelActAsBlameableBehaviorPlugin.git
   path: plugins/
+
+sfMediaBrowserPlugin:
+  repo: git://github.com/vinyll/sfMediaBrowserPlugin.git
+  path: plugins/

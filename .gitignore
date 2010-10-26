@@ -11,3 +11,6 @@ nbproject
 plugins/.*
 plugins/sfPropel15Plugin
 plugins/sfPropelActAsBlameableBehaviorPlugin
+plugins//sfMediaBrowserPlugin
+plugins//sfPropel15Plugin
+plugins//sfPropelActAsBlameableBehaviorPlugin
