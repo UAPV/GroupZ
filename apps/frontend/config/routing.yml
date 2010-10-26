@@ -40,6 +40,53 @@ invitation_user:
   url: /invitation/user/:user/:group_name
   param: { module: invitation, action: resendUser }
 
+# Override sfMediaBrowser routes
+
+sf_media_browser_rename:
+  url:    /g/:group_name/media/rename
+  param:  { module: sfMediaBrowser, action: rename }
+
+sf_media_browser_move:
+  url:    /g/:group_name/media/move
+  param:  { module: sfMediaBrowser, action: move }
+
+sf_media_browser_edit:
+  url:    /g/:group_name/media/edit
+  params: { module: sfMediaBrowser, action: edit }
+
+sf_media_browser:
+  url:    /g/:group_name/media
+  params: { module: sfMediaBrowser, action: list }
+
+sf_media_browser_dir_create:
+  url:    /g/:group_name/media/dir_create
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: createDirectory }
+  requirements: { sf_method: post }
+
+sf_media_browser_dir_delete:
+  url:    /g/:group_name/media/dir_delete
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: deleteDirectory }
+  requirements: { sf_method: get }
+
+sf_media_browser_file_create:
+  url:    /g/:group_name/media/file_create
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: createFile }
+  requirements: { sf_method: post }
+
+sf_media_browser_file_delete:
+  url:    /g/:group_name/media/file_delete
+  class:  sfRequestRoute
+  params: { module: sfMediaBrowser, action: deleteFile }
+  requirements: { sf_method: get }
+
+sf_media_browser_select:
+  url:    /g/:group_name/media/select
+  params: { module: sfMediaBrowser, action: select }
+
+
 # group edition (registered user only)
 group_admin:
   class: sfPropel15RouteCollection

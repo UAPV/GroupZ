@@ -15,5 +15,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('uapvAuthPlugin');
     $this->enablePlugins('sfTaskExtraPlugin');
     $this->enablePlugins('gzDebugEventPlugin');
+    $this->enablePlugins('sfMediaBrowserPlugin');
   }
 }
