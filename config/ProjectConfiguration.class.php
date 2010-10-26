@@ -7,7 +7,9 @@ class ProjectConfiguration extends sfProjectConfiguration
 {
   public function setup()
   {
-    require_once '../lib/config/gzPluginConfiguration.class.php'; // class loader doesn't seems initialized yet... ?!
+    // class loader doesn't seems initialized yet... ?!
+    require_once dirname(__FILE__).'/../lib/config/gzPluginConfiguration.class.php';
+    require_once dirname(__FILE__).'/../lib/event/gzGroupChangeEventHandler.class.php';
 
     $this->enablePlugins('sfPropel15Plugin');
     $this->enablePlugins('uapvAuthPlugin');

@@ -1,0 +1,4 @@
+config/groupz.yml:
+  class:    sfDefineEnvironmentConfigHandler
+  param:
+    prefix: gz_
