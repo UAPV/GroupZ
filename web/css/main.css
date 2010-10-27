@@ -341,6 +341,7 @@ ul#breadcrumb li:last-child {
 
 /* Shinny box */
 
+ul#sf_media_browser_list li ,
 fieldset,
 .form_actions ,
 .group_list li.group ,
@@ -385,6 +386,7 @@ fieldset,
   -webkit-border-bottom-right-radius: 5px;
   border-radius-bottomleft:           5px;
 }
+ul#sf_media_browser_list li ,
 .form_actions {
   -moz-border-radius:     5px;
   -webkit-border-radius:  5px;

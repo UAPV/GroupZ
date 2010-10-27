@@ -9,3 +9,8 @@ all:
     port: 389
     basedn: ou=people,dc=univ-avignon,dc=fr
     options: { <?php echo LDAP_OPT_PROTOCOL_VERSION ?>: 3}
+
+  sf_media_browser:
+    assets_list:
+      css:
+        - media_list.css
