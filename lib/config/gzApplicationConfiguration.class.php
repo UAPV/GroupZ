@@ -16,6 +16,7 @@ class gzApplicationConfiguration extends sfApplicationConfiguration
   public function initConfiguration()
   {
     parent::initConfiguration();
-    $this->getConfigCache()->checkConfig('config/groupz.yml');
+    if ($file = $this->getConfigCache()->checkConfig('config/groupz.yml'))
+      include ($file);
   }
 }

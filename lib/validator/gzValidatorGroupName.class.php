@@ -1,17 +1,17 @@
 <?php
 
 /**
- * sfValidatorGroupName v
+ * gzValidatorGroupName
  *
  * @package    GroupZ
  * @subpackage validator
  * @author     Arnaud Didry <arnaud@didry.info>
  */
-class sfValidatorGroupName extends sfValidatorString
+class gzValidatorGroupName extends sfValidatorString
 {
   protected function configure($options = array(), $messages = array())
   {
-    $this->addMessage('exists', 'A group named "%value%" already exists.');
+    $this->setMessage('invalid', 'A group named "%value%" already exists or is forbidden.');
   }
 
   /**
@@ -22,7 +22,7 @@ class sfValidatorGroupName extends sfValidatorString
     $value = parent::doClean ($value);
 
     if (GroupQuery::create ()->findOneByName($value) !== null)
-      throw new sfValidatorError ($this, 'exists', array ('value' => $value));
+      throw new sfValidatorError ($this, 'invalid', array ('value' => $value));
 
     $blacklists = sfConfig::get ('gz_blacklist', array());
     foreach ($blacklists as $type => $blacklist)

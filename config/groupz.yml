@@ -1,3 +1,4 @@
 all:
-  blacklist:
-    regex: '/adm-.*/'
+  .settings:
+    blacklist:
+      regex: '/^adm-.*/i'

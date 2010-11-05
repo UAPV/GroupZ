@@ -31,7 +31,7 @@ class GroupForm extends BaseGroupForm
       'required' => false
     ));
 
-    $this->validatorSchema ['name'] = new sfValidatorGroupName ();
+    $this->validatorSchema ['name'] = new gzValidatorGroupName ();
 
     $this->validatorSchema->getPostValidator()->setMessage ('invalid', 'A group with the same name already exist.');
 

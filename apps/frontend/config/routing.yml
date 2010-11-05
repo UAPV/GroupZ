@@ -99,6 +99,10 @@ group_admin:
     with_wildcard_routes: true
     with_show:            false
 
+group_validate_name:
+  url:   /tools/validateGroupName
+  param: { module: group_admin, action: ValidateName }
+
 # group read-only (guest + registered users)
 group:
   class: sfPropel15RouteCollection

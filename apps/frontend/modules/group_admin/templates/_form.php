@@ -31,17 +31,35 @@
                    .replace (/--/ig,'-')
                    .toLowerCase ();
       }
-      
+
+      function displayGroupNameError (message) {
+        var li = $('#group_name').closest ('li.name');
+        var errorList = $('ul.error_list', li);
+        if (errorList.length == 0)
+          errorList = $('<ul class="error_list"></ul>').appendTo (li);
+
+
+        if ($('#invalid_group_name_error', errorList).length == 0) {
+          $('<li id="invalid_group_name_error">'+message+'</li>').appendTo (errorList);
+        }
+      }
+
+      function removeGroupNameError () {
+        var li = $('#group_name').closest ('li.name');
+        $('#invalid_group_name_error', li).remove ();
+      }
+
       $('#group_name').change (function () {
         $(this).data ('overriden', ( cleanGroupName ($('#group_title').val ()) != $(this).val ()));
 
         // check validity
-        $.getJSON ('<?php echo url_for ('group_admin/validateName') ?>', {name: $(this).val ()}, function (data) {
+        $.getJSON ('<?php echo url_for ('@group_validate_name') ?>', {name: $(this).val ()}, function (data) {
           console.log(data);
           if (! data.valid)
-            alert (data.message);
+            displayGroupNameError (data.message);
+          else
+            removeGroupNameError ();
         });
-
       });
 
       $('#group_title').keyup (function (e) {
