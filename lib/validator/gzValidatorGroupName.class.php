@@ -9,6 +9,11 @@
  */
 class sfValidatorGroupName extends sfValidatorString
 {
+  protected function configure($options = array(), $messages = array())
+  {
+    $this->addMessage('exists', 'A group named "%value%" already exists.');
+  }
+
   /**
    * @see sfValidatorString
    */
@@ -16,12 +21,17 @@ class sfValidatorGroupName extends sfValidatorString
   {
     $value = parent::doClean ($value);
 
+    if (GroupQuery::create ()->findOneByName($value) !== null)
+      throw new sfValidatorError ($this, 'exists', array ('value' => $value));
+
     $blacklists = sfConfig::get ('gz_blacklist', array());
     foreach ($blacklists as $type => $blacklist)
     {
       $method = 'validateWith'.ucfirst ($type);
       $this->$method ($value, (array) $blacklist);
     }
+
+    return $value;
   }
 
   protected function validateWithLocation ($value, array $locations)
@@ -52,7 +62,7 @@ class sfValidatorGroupName extends sfValidatorString
       if ($class instanceof sfValidatorBase)
       {
         $validator = new $class ();
-        $validator->clean ($value);
+        $value = $validator->clean ($value);
       }
     }
 

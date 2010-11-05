@@ -56,6 +56,24 @@ class group_adminActions extends gzActions
     $this->redirect('@homepage');
   }
 
+  public function executeValidateName (sfWebRequest $request)
+  {
+    $name = $request->getParameter ('name');
+
+    $validator = new gzValidatorGroupName ();
+    try
+    {
+      $validator->clean ($name);  
+    }
+    catch (Exception  $e)
+    {
+      $this->loadI18nHelper();
+      return $this->returnJSON (array ('valid' => false, 'message' => __($e)));
+    }
+
+    return $this->returnJSON (array ('valid' => true));
+  }
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));

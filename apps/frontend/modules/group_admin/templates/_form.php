@@ -21,25 +21,35 @@
     </div>
   <?php endif; ?>
 
+  <?php echo javascript_include_tag ('accent-fold') ?>
   <script type="text/javascript">
     $(document).ready(function() {
 
       function cleanGroupName (name) {
-        return name.replace (/[^a-z0-9]/ig,'-').toLowerCase ();
+        name = accent_fold (name);
+        return name.replace (/[^a-z0-9]/ig,'-')
+                   .replace (/--/ig,'-')
+                   .toLowerCase ();
       }
-
-      $('#group_title').keyup (function () {
-        if(!$('#group_name').data ('overriden'))
-        {
-          $('#group_name').val (cleanGroupName ($(this).val ()));
-        }
-      });
-
-      $('#group_name').keyup (function (event) {
-        $(this).val (cleanGroupName ($(this).val()));
-        $(this).data ('overriden', true);
-      });
       
+      $('#group_name').change (function () {
+        $(this).data ('overriden', ( cleanGroupName ($('#group_title').val ()) != $(this).val ()));
+
+        // check validity
+        $.getJSON ('<?php echo url_for ('group_admin/validateName') ?>', {name: $(this).val ()}, function (data) {
+          console.log(data);
+          if (! data.valid)
+            alert (data.message);
+        });
+
+      });
+
+      $('#group_title').keyup (function (e) {
+        var groupNameInput = $('#group_name');
+        if (! groupNameInput.data ('overriden'))
+            groupNameInput.val (cleanGroupName ($(this).val ())).change ();
+      });
+
     });
   </script>
 

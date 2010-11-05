@@ -13,8 +13,6 @@ class GroupForm extends BaseGroupForm
 
   public function configure()
   {
-    $this->widgetSchema->setFormFormatterName('list');
-
     unset($this['ml_name']);
     unset($this['expires_notice']);
     unset($this['expires_at']);
@@ -32,6 +30,10 @@ class GroupForm extends BaseGroupForm
       'multiple' => true,
       'required' => false
     ));
+
+    $this->validatorSchema ['name'] = new sfValidatorGroupName ();
+
+    $this->validatorSchema->getPostValidator()->setMessage ('invalid', 'A group with the same name already exist.');
 
     $this->setDefault ('users', $this->getSavedMemberIds ());
 
@@ -91,7 +93,7 @@ class GroupForm extends BaseGroupForm
    */
   public function getMembers ()
   {
-    $userIds = $this['users']->getValue ();
+    $userIds = (array) $this['users']->getValue ();
 
     // Users should already be in the instance pool, so we retrieve them
     // one by one with findPk

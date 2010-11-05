@@ -9,7 +9,14 @@
  */
 abstract class BaseFormPropel extends sfFormPropel
 {
-  public function setup()
+  public function setup ()
   {
+    parent::setup ();
+
+    $formatter = new gzWidgetFormSchemaFormatterGroupz ($this->widgetSchema);
+    $formatter->setValidatorSchema ($this->validatorSchema);
+
+    $this->widgetSchema->addFormFormatter ('groupz', $formatter);
+    $this->widgetSchema->setFormFormatterName ('groupz');
   }
 }
