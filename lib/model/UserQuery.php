@@ -26,6 +26,7 @@ class UserQuery extends BaseUserQuery {
   public function filterByGroupAndInvitations (Group $group)
   {
     return $this
+      ->setDistinct ()
       ->joinInvitation  (null, Criteria::LEFT_JOIN)
       ->joinGroupMember (null, Criteria::LEFT_JOIN)
       ->where ('Invitation.GroupId = ?', $group->getId ())

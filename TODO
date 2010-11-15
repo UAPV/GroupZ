@@ -1,6 +1,5 @@
 
 
-* Bug double affichage de l'invitation d'un utilisateur mais pas de doublon en base
 * Bug perte de l'autocomplétion du nom du groupe après la perte du focus sur le titre du groupe
 * Bug affichage du texte du bouton "recherche un groupe" sous FF
 * Bug affichage du dégradé du flash_notice sous FF
