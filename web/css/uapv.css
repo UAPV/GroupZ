@@ -189,7 +189,7 @@ ul.error_list {
   color: #5F5D4C;
   background: #efeaba;
   border: 1px solid #F5F1C9;
-  background: -moz-linear-gradient(#fefad2 0%, #e99191 100%);
+  background: -moz-linear-gradient(#FFFDE6 0%, #fefad2 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #FFFDE6), color-stop(100%, #fefad2));
 }
 .flash_error {

@@ -5,8 +5,8 @@
 }
 
 .uapv_header {
-  background: #494846;
-  background: -moz-linear-gradient(#DCD9D5 0%, #D1CDC8 100%);
+  background: #DCD9D5;
+  background: -moz-linear-gradient(#DCD9D5 0%, #BEB8AF 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #DCD9D5), color-stop(100%, #BEB8AF));
   position: relative;
 }
@@ -124,6 +124,7 @@ label span.required {
     display: inline;
 }
 .group_members #new_member {
+  background: #F5F5F5;
   background: -moz-linear-gradient(#F5F5F5 30%, #EEE 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #F5F5F5), color-stop(100%, #EEE));
   border-color: #E2E2E2;
@@ -338,7 +339,7 @@ input.username {
 /* Toolbar */
 
 #toolbar {
-  background: #B7B4B0;
+  background: #A39D94;
   background: -moz-linear-gradient(#A39D94 70%, #898379 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, #A39D94), color-stop(100%, #99948D));
   border-bottom: 1px solid #918D89;
@@ -404,7 +405,7 @@ ul#breadcrumb li:first-child {
   height: 16px;
   background: transparent url(../images/icons/search.png) no-repeat 2px center;
   display: block;
-  text-indent: -2000px;
+  text-indent: -5000px;
 }
 
 /* Edit account */
@@ -425,6 +426,7 @@ fieldset,
   list-style: none;
   border: 1px solid #E2E0E0;
   position: relative;
+  background: #fefdfc;
   background: -moz-linear-gradient(#FFF 30%, #F5F4F3 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(30%, #FFF), color-stop(100%, #F5F4F3));
 }
