@@ -24,7 +24,7 @@
   <?php elseif($sf_user->getFlash('notice') == 'file.create'): ?>
     <?php echo __('The file was successfully uploaded.') ?>
   <?php elseif($sf_user->getFlash('notice') == 'file.delete'): ?>
-    <?php echo __('The file was succesfully deleted.') ?>
+    <?php echo __('The file was successfully deleted.') ?>
   <?php endif ?>
   </div>
 <?php endif ?>

@@ -17,8 +17,9 @@ class sfMediaBrowserActions extends BasesfMediaBrowserActions
     // TODO check membership
 
     // Override root dir
-    sfConfig::set('app_sf_media_browser_root_dir', '/uploads/'.$this->group->getName());
-    @mkdir (sfConfig::get('sf_web_dir').'/uploads/'.$this->group->getName());
+    $rootDir = 'uploads/'.$this->group->getName();
+    sfConfig::set('app_sf_media_browser_root_dir', $rootDir);
+    @mkdir (sfConfig::get('sf_web_dir').'/'.$rootDir);
 
     $this->getContext()->getRouting()->setDefaultParameters (array ('group_name' => $this->group->getName()));
 
