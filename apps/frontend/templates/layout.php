@@ -21,7 +21,7 @@
         </div>
       </div>
       <div id="toolbar">
-        <?php include_partial('global/breadcrumb', array ('path' => get_slot ('breadcrumb', array()))) ?>
+        <?php include_partial ('global/breadcrumb', array ('path' => get_slot ('breadcrumb', array()))) ?>
         <div id="search_box">
           <form action="">
             <input type="text" placeholder="<?php echo __("Find a group") ?>" name="search" />
