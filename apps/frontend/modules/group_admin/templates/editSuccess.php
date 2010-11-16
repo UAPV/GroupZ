@@ -1,5 +1,5 @@
 
-<?php slot ('breadcrumb',array ($form->getObject()->getTitle () => '@group_show?name='.$form->getObject()->getName(), _('Edit') => null )); ?>
+<?php slot ('breadcrumb',array ($form->getObject()->getTitle () => '@group_show?name='.$form->getObject()->getName(), __('Edit') => null )); ?>
 
 <h1>Edit Group</h1>
 

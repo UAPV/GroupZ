@@ -86,7 +86,7 @@
         </span>
         <?php echo $form['name']->renderError() ?>
       <?php else: ?>
-        <label><?php echo _('Name') ?></label>
+        <label><?php echo __('Name') ?></label>
         <div><?php echo $form->getGroup ()->getEmail (); ?></div>
       <?php endif ?>
     </li>
@@ -102,13 +102,13 @@
   </ul>
 
   <div class="group_members">
-    <label><?php echo _('Group members') ?></label>
+    <label><?php echo __('Group members') ?></label>
     <ul class="users">
         <li id="new_member"">
-          <label for="autocomplete_user"><?php echo _('Add user') ?></label>
-          <input type="text" id="autocomplete_user" placeholder="<?php echo _('Name or email') ?>" title="<?php
-            echo _('Type a name or email of your contact, then select him in the list. ') ?>"/>
-          <input type="submit" id="add_user" value="<?php  echo _('Add') ?>" />
+          <label for="autocomplete_user"><?php echo __('Add user') ?></label>
+          <input type="text" id="autocomplete_user" placeholder="<?php echo __('Name or email') ?>" title="<?php
+            echo __('Type a name or email of your contact, then select him in the list. ') ?>"/>
+          <input type="submit" id="add_user" value="<?php  echo __('Add') ?>" />
         </li>
       <?php foreach ($form->getMembers () as $user): ?>
         <li <?php if($user->isGuest()) echo 'class="guest_user"'; ?>>
@@ -118,11 +118,11 @@
           </span>
           <?php if ($user->hasInvitationForGroup ($form->getGroup ())): ?>
             <span class="invitation_pending">
-              <?php echo link_to (_('Pending invitations'), '@invitation_user?group_name='.$form->getGroup()->getName().'&user='.$user->getId())?>
+              <?php echo link_to (__('Pending invitations'), '@invitation_user?group_name='.$form->getGroup()->getName().'&user='.$user->getId())?>
             </span>
           <?php endif ?>
           <span class="user_email"><a href="mailto:<?php echo $user->getEmail () ?>"><?php echo $user->getEmail () ?></a></span>
-          <span class="user_delete" title="<?php echo _('Delete member') ?>"><a href="#"><?php echo _('Delete') ?></a></span>
+          <span class="user_delete" title="<?php echo __('Delete member') ?>"><a href="#"><?php echo __('Delete') ?></a></span>
         </li>
       <?php endforeach; ?>
     </ul>
@@ -130,7 +130,7 @@
     <div>
 
       <?php if ($form->getGroup ()->hasPendingInvitations ()): ?>
-        <?php echo link_to (_('Resend all pending invitations'),
+        <?php echo link_to (__('Resend all pending invitations'),
                 '@invitation_group?group_name='.$form->getGroup()->getName(),
                  array ('id' => 'resend_group_invitations')); ?>
       <?php endif ?>
@@ -212,7 +212,7 @@
               '<input type="hidden" name="group[users][]" value="'+user.id+'"/>'+
               '<span class="user_fullname">'+user.fullname+'</span> '+
               '<span class="user_email"><a href="mailto:'+user.email+'">'+user.email+'</a></span> '+
-              '<span class="user_delete"><a href="#"><?php echo _('Delete') ?></a></span>'+
+              '<span class="user_delete"><a href="#"><?php echo __('Delete') ?></a></span>'+
             '</li>');
         }
 
@@ -223,7 +223,7 @@
             if (data.status && data.status == 'success')
               alert (data.response);
             else
-              alert (<?php echo json_encode (_('Error while sending invitation.')) ?>);
+              alert (<?php echo json_encode (__('Error while sending invitation.')) ?>);
           });
           return false;
         });
@@ -236,11 +236,11 @@
   <div class="clearboth"></div>
 
   <div class="form_actions">
-    <input type="submit" value="<?php echo _('Save') ?>" />&nbsp;&nbsp;
+    <input type="submit" value="<?php echo __('Save') ?>" />&nbsp;&nbsp;
     <?php if (!$form->getGroup()->isNew()): ?>
-      <?php echo link_to(_('Delete'), '@group_admin_delete?name='.$form->getGroup()->getName(), array('method' => 'delete', 'confirm' => _('Are you sure?'))) ?>&nbsp;&nbsp;
+      <?php echo link_to(__('Delete'), '@group_admin_delete?name='.$form->getGroup()->getName(), array('method' => 'delete', 'confirm' => __('Are you sure?'))) ?>&nbsp;&nbsp;
     <?php endif; ?>
-    <a href="<?php echo url_for('group/index') ?>"><?php echo _('Back to list') ?></a>
+    <a href="<?php echo url_for('group/index') ?>"><?php echo __('Back to list') ?></a>
   </div>
 
 </form>

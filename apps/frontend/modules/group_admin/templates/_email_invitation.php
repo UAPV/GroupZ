@@ -1,4 +1,4 @@
-<?php slot ('email_subject', _('You have been invited to join a group')) ?>
+<?php slot ('email_subject', __('You have been invited to join a group')) ?>
 
 <p><?php echo __('Hello') ?>,</p>
 

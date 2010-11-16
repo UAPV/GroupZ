@@ -61,7 +61,7 @@ class userActions extends gzActions
     catch (Exception $e)
     {
       return $this->returnJSON(array (
-        'error' => _('Invalid email')
+        'error' => __('Invalid email')
       ));
     }
 
