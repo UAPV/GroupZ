@@ -86,6 +86,10 @@ sf_media_browser_select:
   url:    /g/:group_name/media/select
   params: { module: sfMediaBrowser, action: select }
 
+sf_media_browser_download:
+  url:    /g/:group_name/media/download/:file
+  params: { module: sfMediaBrowser, action: download }
+
 
 # group edition (registered user only)
 group_admin:

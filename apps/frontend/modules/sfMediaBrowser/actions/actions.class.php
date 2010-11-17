@@ -14,7 +14,8 @@ class sfMediaBrowserActions extends BasesfMediaBrowserActions
     $this->group = GroupQuery::create()->findOneByName ($this->getRequestParameter('group_name'));
     $this->forward404Unless ($this->group);
 
-    // TODO check membership
+    if (! $this->group->hasMember ($this->getUser ()->getUserObject ()))
+      $this->forward (sfConfig::get('sf_secure_module'), sfConfig::get('sf_secure_action'));
 
     // Override root dir
     $rootDir = 'uploads/'.$this->group->getName();
@@ -24,5 +25,10 @@ class sfMediaBrowserActions extends BasesfMediaBrowserActions
     $this->getContext()->getRouting()->setDefaultParameters (array ('group_name' => $this->group->getName()));
 
     parent::preExecute();
+  }
+
+  public function executeDownload (sfWebRequest $request)
+  {
+    // TODO
   }
 }

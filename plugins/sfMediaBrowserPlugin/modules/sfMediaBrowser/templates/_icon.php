@@ -1,6 +1,6 @@
 <?php use_helper('I18N') ?>
 <div class="icon">
-  <?php echo link_to(image_tag($file->getIcon()), $file->getUrl(), array('target' => '_blank')) ?>
+  <?php echo link_to(image_tag($file->getIcon()), '@sf_media_browser_download?file='.trim($relative_dir,'/').'/'.$file->getName(), array('target' => '_blank')) ?>
 </div>
 <label class="name"><?php echo $file->getName() ?></label>
 <div class="action">

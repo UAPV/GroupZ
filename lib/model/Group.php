@@ -87,4 +87,16 @@ class Group extends BaseGroup {
     return parent::postDelete ($con);
   }
 
+  /**
+   * Tell if a user is a member of this group
+   *
+   * @param User $user
+   * @return boolean
+   */
+  public function hasMember (User $user)
+  {
+    return (GroupMemberQuery::create ()->findPK (array ($this->getId (), $user->getId ())) !== null
+          || $this->getCreatedBy () == $user->getId ());
+  }
+
 } // Group
